@@ -49,11 +49,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, //
-			/*"averageNumberOfJobsPerEmployer", "averageNumberOfApplicationsPerWorker", // 
-			"avegageNumberOfApplicationsPerEmployer", "ratioOfPendingApplications", //
-			"ratioOfRejectedApplications", "ratioOfAcceptedApplications"
-			*/"totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads");
+		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads");
 	}
 
 	@Override
