@@ -12,9 +12,13 @@
 
 package acme.features.administrator.dashboard;
 
+import java.util.Comparator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.tasks.Task;
 import acme.forms.Dashboard;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -49,7 +53,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			/*"averageNumberOfJobsPerEmployer", "averageNumberOfApplicationsPerWorker", // 
 			"avegageNumberOfApplicationsPerEmployer", "ratioOfPendingApplications", //
 			"ratioOfRejectedApplications", "ratioOfAcceptedApplications"
-			*/"testApplication");
+			*/"totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads");
 	}
 
 	@Override
@@ -57,36 +61,72 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert request != null;
 
 		Dashboard result;
-		/*
-		Double averageNumberOfApplicationsPerEmployer;
-		Double averageNumberOfApplicationsPerWorker;
-		Double averageNumberOfJobsPerEmployer;
-		Double ratioOfPendingApplications;
-		Double ratioOfAcceptedApplications;
-		Double ratioOfRejectedApplications;
-		*/
-		Double testApplication; //BORRAR
-/*
-		averageNumberOfApplicationsPerEmployer = this.repository.averageNumberOfApplicationsPerEmployer();
-		averageNumberOfApplicationsPerWorker = this.repository.averageNumberOfApplicationsPerWorker();
-		averageNumberOfJobsPerEmployer = this.repository.averageNumberOfJobsPerEmployer();
-		ratioOfPendingApplications = this.repository.ratioOfPendingApplications();
-		ratioOfAcceptedApplications = this.repository.ratioOfAcceptedApplications();
-		ratioOfRejectedApplications = this.repository.ratioOfRejectedApplications();
-		*/
-		testApplication = 1.0;
+		Integer 					totalNumberOfPublicTasks;
+		Integer						totalNumberOfPrivateTasks;
+		Integer						totalNumberOfFinishedTasks;
+		Integer						totalNumberOfNonFinishedTasks;
+		Double						averageTaskExecutionPeriods;
+		Double						deviationTaskExecutionPeriods;
+		Double						minimumTaskExecutionPeriods;
+		Double						maximumTaskExecutionPeriods;
+		Double						averageTaskWorloads;
+		Double						deviationTaskWorloads;
+		Double						minimumTaskWorloads;
+		Double						maximumTaskWorloads;
+
+		List<Task> totalTasks = this.repository.allTasks();
+		averageTaskWorloads = calculateWorkloadAverage(totalTasks);
+		deviationTaskWorloads = calculateWorkloadDeviation(totalTasks);
+		totalNumberOfPublicTasks = this.repository.totalNumberOfPublicTasks();
+		totalNumberOfPrivateTasks = this.repository.totalNumberOfPrivateTasks();
+		totalNumberOfFinishedTasks = this.repository.totalNumberOfFinishedTasks();
+		totalNumberOfNonFinishedTasks = this.repository.totalNumberOfNonFinishedTasks();
+		averageTaskExecutionPeriods= this.repository.averageTaskExecutionPeriods();
+		deviationTaskExecutionPeriods = this.repository.deviationTaskExecutionPeriods();
+		minimumTaskExecutionPeriods = this.repository.minimumTaskExecutionPeriods();
+		maximumTaskExecutionPeriods = this.repository.maximumTaskExecutionPeriods();
+		minimumTaskWorloads = totalTasks.stream().mapToDouble(x->x.workload()).min().orElse(0.0);
+		maximumTaskWorloads = totalTasks.stream().mapToDouble(x->x.workload()).max().orElse(0.0);
 
 		result = new Dashboard();
-		result.setTestingApplication(testApplication); //BORRAR
-		/*
-		result.setAvegageNumberOfApplicationsPerEmployer(averageNumberOfApplicationsPerEmployer);
-		result.setAverageNumberOfApplicationsPerWorker(averageNumberOfApplicationsPerWorker);
-		result.setAverageNumberOfJobsPerEmployer(averageNumberOfJobsPerEmployer);
-		result.setRatioOfPendingApplications(ratioOfPendingApplications);
-		result.setRatioOfAcceptedApplications(ratioOfAcceptedApplications);
-		result.setRatioOfRejectedApplications(ratioOfRejectedApplications);
-*/
+		result.setTotalNumberOfPublicTasks(totalNumberOfPublicTasks);
+		result.setTotalNumberOfPrivateTasks(totalNumberOfPrivateTasks);
+		result.setTotalNumberOfFinishedTasks(totalNumberOfFinishedTasks);
+		result.setTotalNumberOfNonFinishedTasks(totalNumberOfNonFinishedTasks);
+		result.setAverageTaskExecutionPeriods(averageTaskExecutionPeriods);
+		result.setDeviationTaskExecutionPeriods(deviationTaskExecutionPeriods);
+		result.setMaximumTaskExecutionPeriods(maximumTaskExecutionPeriods);
+		result.setMinimumTaskExecutionPeriods(minimumTaskExecutionPeriods);
+		result.setAverageTaskWorloads(averageTaskWorloads);
+		result.setDeviationTaskWorloads(deviationTaskWorloads);
+		result.setMinimumTaskWorloads(minimumTaskWorloads);
+		result.setMaximumTaskWorloads(maximumTaskWorloads);
 		return result;
 	}
+
+	private Double calculateWorkloadDeviation(List<Task> totalTasks) {
+		Double totalWorkload = .0;
+		Double deviation = .0;
+		Integer numberOfTasks = totalTasks.size();
+		for(Task task: totalTasks){
+			totalWorkload += task.workload();
+		}
+		Double mean = totalWorkload/numberOfTasks;
+		for(Task task: totalTasks){
+			deviation += Math.pow(task.workload()-mean, 2);
+
+		}
+		return Math.sqrt(deviation/numberOfTasks);
+	}
+
+	private Double calculateWorkloadAverage(List<Task> totalTasks) {
+		Double average = .0;
+		for (int i = 0; i < totalTasks.size(); i++) {
+			average += totalTasks.get(i).workload();
+		}
+		average /= totalTasks.size();
+		return average;
+	}
+	
 
 }

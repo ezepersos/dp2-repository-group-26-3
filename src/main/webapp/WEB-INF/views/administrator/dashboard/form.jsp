@@ -25,78 +25,98 @@
 	</caption>	
 	<tr>
 		<th scope="row">
-			<acme:message code="administrator.dashboard.form.label.average-number-jobs-employer"/>
+			<acme:message code="administrator.dashboard.form.label.number-public-tasks"/>
 		</th>
 		<td>
-			<acme:print value="${averageNumberOfJobsPerEmployer}"/>
+			<acme:print value="${totalNumberOfPublicTasks}"/>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="administrator.dashboard.form.label.average-number-applications-worker"/>
+			<acme:message code="administrator.dashboard.form.label.number-private-tasks"/>
 		</th>
 		<td>
-			<acme:print value="${averageNumberOfApplicationsPerWorker}"/>
+			<acme:print value="${totalNumberOfPrivateTasks}"/>
 		</td>
 	</tr>
 	<tr>
 		<th scope="row">
-			<acme:message code="administrator.dashboard.form.label.average-number-applications-employer"/>
+			<acme:message code="administrator.dashboard.form.label.number-finished-task"/>
 		</th>
 		<td>
-			<acme:print value="${avegageNumberOfApplicationsPerEmployer}"/>
+			<acme:print value="${totalNumberOfFinishedTasks}"/>
 		</td>
-	</tr>	
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.number-non-finished-tasks"/>
+		</th>
+		<td>
+			<acme:print value="${totalNumberOfNonFinishedTasks}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.average-task-execution-period"/>
+		</th>
+		<td>
+			<acme:print value="${averageTaskExecutionPeriods}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.deviation-task-execution-period"/>
+		</th>
+		<td>
+			<acme:print value="${deviationTaskExecutionPeriods}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.minimum-task-execution-period"/>
+		</th>
+		<td>
+			<acme:print value="${minimumTaskExecutionPeriods}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.maximum-task-execution-period"/>
+		</th>
+		<td>
+			<acme:print value="${maximumTaskExecutionPeriods}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.average-task-workloads"/>
+		</th>
+		<td>
+			<acme:print value="${averageTaskWorloads}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.deviation-task-workloads"/>
+		</th>
+		<td>
+			<acme:print value="${deviationTaskWorloads}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.minimum-task-workloads"/>
+		</th>
+		<td>
+			<acme:print value="${minimumTaskWorloads}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.maximum-task-workloads"/>
+		</th>
+		<td>
+			<acme:print value="${maximumTaskWorloads}"/>
+		</td>
+	</tr>
 </table>
-
-<h2>
-	<acme:message code="administrator.dashboard.form.title.application-statuses"/>
-</h2>
-
-<div>
-	<canvas id="canvas"></canvas>
-</div>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		var data = {
-			labels : [
-					"PENDING", "ACCEPTED", "REJECTED"
-			],
-			datasets : [
-				{
-					data : [
-						<jstl:out value="${ratioOfPendingApplications}"/>, 
-						<jstl:out value="${ratioOfAcceptedApplications}"/>, 
-						<jstl:out value="${ratioOfRejectedApplications}"/>
-					]
-				}
-			]
-		};
-		var options = {
-			scales : {
-				yAxes : [
-					{
-						ticks : {
-							suggestedMin : 0.0,
-							suggestedMax : 1.0
-						}
-					}
-				]
-			},
-			legend : {
-				display : false
-			}
-		};
-	
-		var canvas, context;
-	
-		canvas = document.getElementById("canvas");
-		context = canvas.getContext("2d");
-		new Chart(context, {
-			type : "bar",
-			data : data,
-			options : options
-		});
-	});
-</script>

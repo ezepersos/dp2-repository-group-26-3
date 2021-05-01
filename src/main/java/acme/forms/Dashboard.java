@@ -26,15 +26,20 @@ public class Dashboard implements Serializable {
 	protected static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-/*
-	Double						averageNumberOfJobsPerEmployer;
-	Double						averageNumberOfApplicationsPerWorker;
-	Double						avegageNumberOfApplicationsPerEmployer;
-	Double						ratioOfPendingApplications;
-	Double						ratioOfAcceptedApplications;
-	Double						ratioOfRejectedApplications;
-	*/
-	Double						testingApplication; //BORRAR
+
+	Integer 					totalNumberOfPublicTasks;
+	Integer						totalNumberOfPrivateTasks;
+	Integer						totalNumberOfFinishedTasks;
+	Integer						totalNumberOfNonFinishedTasks;
+	Double						averageTaskExecutionPeriods;
+	Double						deviationTaskExecutionPeriods;
+	Double						minimumTaskExecutionPeriods;
+	Double						maximumTaskExecutionPeriods;
+	Double						averageTaskWorloads;
+	Double						deviationTaskWorloads;
+	Double						minimumTaskWorloads;
+	Double						maximumTaskWorloads;
+
 
 	// Derived attributes -----------------------------------------------------
 

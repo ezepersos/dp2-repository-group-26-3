@@ -12,33 +12,43 @@
 
 package acme.features.administrator.dashboard;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.tasks.Task;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
 public interface AdministratorDashboardRepository extends AbstractRepository {
-/*
-	@Query("select avg(select count(j) from Job j where j.employer.id = e.id) from Employer e")
-	Double averageNumberOfJobsPerEmployer();
+	@Query ("select count(t) from Task t where t.isPublic = true")
+	Integer totalNumberOfPublicTasks();
+	@Query ("select count(t) from Task t where t.isPublic = false")
+	Integer totalNumberOfPrivateTasks();
+	@Query ("select count(t) from Task t where t.executionPeriodEnd < CURRENT_TIMESTAMP")
+	Integer totalNumberOfFinishedTasks();
+	@Query ("select count(t) from Task t where t.executionPeriodEnd > CURRENT_TIMESTAMP")
+	Integer totalNumberOfNonFinishedTasks();
+	@Query("select avg(datediff(t.executionPeriodEnd,t.executionPeriodInit)) from Task t")
+	Double averageTaskExecutionPeriods();
+	@Query ("select stddev(datediff(t.executionPeriodInit, t.executionPeriodEnd)) from Task t")
+	Double deviationTaskExecutionPeriods();
 
-	@Query("select avg(select count(a) from Application a where a.worker.id = w.id) from Worker w")
-	Double averageNumberOfApplicationsPerWorker();
+	@Query ("select min(datediff(t.executionPeriodEnd,t.executionPeriodInit)) from Task t")
+	Double minimumTaskExecutionPeriods();
 
-	@Query("select avg(select count(a) from Application a where exists(select j from Job j where j.employer.id = e.id and a.job.id = j.id)) from Employer e")
-	Double averageNumberOfApplicationsPerEmployer();
-
-	@Query("select 1.0 * count(a) / (select count(b) from Application b) from Application a where a.status = acme.entities.jobs.ApplicationStatus.PENDING")
-	Double ratioOfPendingApplications();
-
-	@Query("select 1.0 * count(a) / (select count(b) from Application b) from Application a where a.status = acme.entities.jobs.ApplicationStatus.ACCEPTED")
-	Double ratioOfAcceptedApplications();
-
-	@Query("select 1.0 * count(a) / (select count(b) from Application b) from Application a where a.status = acme.entities.jobs.ApplicationStatus.REJECTED")
-	Double ratioOfRejectedApplications();
+	@Query ("select max(datediff(t.executionPeriodEnd,t.executionPeriodInit)) from Task t")
+	Double maximumTaskExecutionPeriods();
+	@Query ("select t from Task t")
+	List<Task> allTasks();
+	/*
+	@Query ("select count(t) from Task t")
+	Double deviationTaskWorloads();
+	@Query ("select count(t) from Task t")
+	Double minimumTaskWorloads();
+	@Query ("select count(t) from Task t")
+	Double maximumTaskWorloads();
+	
 */
-	@Query("select count(a.id) from Administrator a")
-	Double testApplication();
-
 }

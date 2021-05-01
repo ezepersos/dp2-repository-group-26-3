@@ -52,7 +52,7 @@ public class Task extends DomainEntity {
 	
 	
 	protected Boolean isPublic;
-	
+
 	// Derived attributes -----------------------------------------------------
 
 	@Digits(fraction=2, integer=10)
