@@ -1,0 +1,348 @@
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:93): Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138): org.hibernate.hql.internal.ast.QuerySyntaxException: Employer is not mapped [select avg(select count(j) from Job j where j.employer.id = e.id) from Employer e]
+at org.hibernate.hql.internal.ast.QuerySyntaxException.generateQueryException(QuerySyntaxException.java:79): Employer is not mapped [select avg(select count(j) from Job j where j.employer.id = e.id) from Employer e]
+at org.hibernate.hql.internal.ast.util.SessionFactoryHelper.requireClassPersister(SessionFactoryHelper.java:169): Employer is not mapped
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:93): Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.averageNumberOfJobsPerEmployer()!
+at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138): org.hibernate.hql.internal.ast.QuerySyntaxException: Employer is not mapped [select avg(select count(j) from Job j where j.employer.id = e.id) from Employer e]
+at org.hibernate.hql.internal.ast.QuerySyntaxException.generateQueryException(QuerySyntaxException.java:79): Employer is not mapped [select avg(select count(j) from Job j where j.employer.id = e.id) from Employer e]
+at org.hibernate.hql.internal.ast.util.SessionFactoryHelper.requireClassPersister(SessionFactoryHelper.java:169): Employer is not mapped
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] line 1:8: unexpected token: *
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] at org.hibernate.hql.internal.antlr.HqlBaseParser.selectClause(HqlBaseParser.java:1380): unexpected token: *
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:93): Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138): org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from Job]
+at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74): unexpected token: * near line 1, column 8 [select * from Job]
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] line 1:8: unexpected token: *
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] at org.hibernate.hql.internal.antlr.HqlBaseParser.selectClause(HqlBaseParser.java:1380): unexpected token: *
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:93): Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138): org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from Job]
+at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74): unexpected token: * near line 1, column 8 [select * from Job]
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] line 1:8: unexpected token: *
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] at org.hibernate.hql.internal.antlr.HqlBaseParser.selectClause(HqlBaseParser.java:1380): unexpected token: *
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:93): Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138): org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from Job]
+at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74): unexpected token: * near line 1, column 8 [select * from Job]
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] line 1:8: unexpected token: *
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] at org.hibernate.hql.internal.antlr.HqlBaseParser.selectClause(HqlBaseParser.java:1380): unexpected token: *
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:93): Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138): org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from acme.framework.entities.Administrator]
+at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74): unexpected token: * near line 1, column 8 [select * from acme.framework.entities.Administrator]
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] line 1:8: unexpected token: *
+ERROR [org.hibernate.hql.internal.ast.ErrorTracker] at org.hibernate.hql.internal.antlr.HqlBaseParser.selectClause(HqlBaseParser.java:1380): unexpected token: *
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardController': Unsatisfied dependency expressed through field 'showService'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:643): Error creating bean with name 'administratorDashboardShowService': Unsatisfied dependency expressed through field 'repository'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'administratorDashboardRepository' defined in acme.features.administrator.dashboard.AdministratorDashboardRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:93): Validation failed for query for method public abstract java.lang.Double acme.features.administrator.dashboard.AdministratorDashboardRepository.testApplication()!
+at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138): org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token: * near line 1, column 8 [select * from acme.framework.entities.Administrator]
+at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74): unexpected token: * near line 1, column 8 [select * from acme.framework.entities.Administrator]
+ERROR [org.apache.jsp.WEB_002dINF.views.framework.panic_jsp] HTTP GET /Acme-Planner/WEB-INF/views/framework/page.jsp HTTP/1.1
+ERROR [org.apache.jsp.WEB_002dINF.views.framework.panic_jsp] Status: 500
+ERROR [org.apache.jsp.WEB_002dINF.views.framework.panic_jsp] Exception: org.springframework.beans.AbstractNestablePropertyAccessor.getPropertyValue(AbstractNestablePropertyAccessor.java:625): Invalid property 'testApplication' of bean class [acme.forms.Dashboard]: Bean property 'testApplication' is not readable or has an invalid getter method: Does the return type of the getter match the parameter type of the setter?
+ERROR [org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [spam]
+WARN [org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [spam]
+ERROR [org.springframework.boot.SpringApplication] at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788): Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [spam]
+at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421): [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.tool.schema.spi.SchemaManagementException: Schema-validation: missing table [spam]
+at org.hibernate.tool.schema.internal.AbstractSchemaValidator.validateTable(AbstractSchemaValidator.java:121): Schema-validation: missing table [spam]
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 9768 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.746 seconds (JVM running for 7.44)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 14048 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.346 seconds (JVM running for 6.962)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 14344 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.282 seconds (JVM running for 6.897)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 14444 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.497 seconds (JVM running for 7.158)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 4832 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.581 seconds (JVM running for 7.206)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 3140 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.388 seconds (JVM running for 7.026)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 20428 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.384 seconds (JVM running for 6.998)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 7112 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.354 seconds (JVM running for 6.965)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 10712 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.36 seconds (JVM running for 6.961)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 13692 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.353 seconds (JVM running for 6.956)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 20416 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 7.652 seconds (JVM running for 8.752)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 17040 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.461 seconds (JVM running for 7.06)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 14444 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.404 seconds (JVM running for 7.057)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 18704 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.461 seconds (JVM running for 7.063)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 15376 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.83 seconds (JVM running for 7.443)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 3116 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.31 seconds (JVM running for 6.901)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 22448 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.304 seconds (JVM running for 6.896)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 18484 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.366 seconds (JVM running for 6.976)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 12800 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.356 seconds (JVM running for 6.955)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 19596 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.348 seconds (JVM running for 6.957)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.utilities.DatabasePopulator] Validating your entities.
+INFO [acme.framework.utilities.DatabasePopulator] Validating anonymousUserAccount ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating anonymousAnonymous ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating administratorUserAccount ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating administratorAdministrator ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating administratorAuthenticated ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating spamN1 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word1 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word2 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word3 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word4 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word5 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word6 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word7 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word8 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word9 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word10 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word11 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word12 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word13 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word14 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word15 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Sorting your entities topologically.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 0 for anonymousUserAccount.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 1 for anonymousAnonymous.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 2 for administratorUserAccount.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 3 for administratorAdministrator.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 4 for administratorAuthenticated.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 5 for spamN1.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 6 for word1.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 7 for word2.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 8 for word3.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 9 for word4.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 10 for word5.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 11 for word6.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 12 for word7.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 13 for word8.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 14 for word9.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 15 for word10.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 16 for word11.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 17 for word12.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 18 for word13.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 19 for word14.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 20 for word15.
+INFO [acme.framework.utilities.DatabasePopulator] Persiting your entities.
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting anonymousUserAccount = acme.framework.entities.UserAccount{id=1, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting anonymousAnonymous = acme.framework.entities.Anonymous{id=2, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting administratorUserAccount = acme.framework.entities.UserAccount{id=3, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting administratorAdministrator = acme.framework.entities.Administrator{id=4, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting administratorAuthenticated = acme.framework.entities.Authenticated{id=5, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting spamN1 = acme.entities.spam.Spam{id=6, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word1 = acme.entities.words.Word{id=7, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word2 = acme.entities.words.Word{id=8, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word3 = acme.entities.words.Word{id=9, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word4 = acme.entities.words.Word{id=10, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word5 = acme.entities.words.Word{id=11, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word6 = acme.entities.words.Word{id=12, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word7 = acme.entities.words.Word{id=13, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word8 = acme.entities.words.Word{id=14, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word9 = acme.entities.words.Word{id=15, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word10 = acme.entities.words.Word{id=16, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word11 = acme.entities.words.Word{id=17, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word12 = acme.entities.words.Word{id=18, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word13 = acme.entities.words.Word{id=19, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word14 = acme.entities.words.Word{id=20, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word15 = acme.entities.words.Word{id=21, version=0}
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-HTLCG02 with PID 18552 (C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner\target\classes started by Ezequ in C:\Users\Ezequ\Documents\Universidad\DP2\Workspace-21.1\Projects\dp2-repository-group-26-Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator
+INFO [acme.Launcher] Started Launcher in 6.277 seconds (JVM running for 6.882)
+INFO [acme.framework.utilities.DatabasePopulator] Populating initial data
+INFO [acme.framework.utilities.DatabasePopulator] Recreating schema
+INFO [acme.framework.utilities.DatabasePopulator] Populating entities from classpath:/WEB-INF/population/initial-data.xml
+INFO [acme.framework.utilities.DatabasePopulator] Validating your entities.
+INFO [acme.framework.utilities.DatabasePopulator] Validating anonymousUserAccount ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating anonymousAnonymous ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating administratorUserAccount ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating administratorAdministrator ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating administratorAuthenticated ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word1 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word2 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word3 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word4 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word5 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word6 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word7 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word8 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word9 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word10 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word11 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word12 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word13 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word14 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating word15 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Validating spamN1 ... PASS
+INFO [acme.framework.utilities.DatabasePopulator] Sorting your entities topologically.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 0 for anonymousUserAccount.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 1 for anonymousAnonymous.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 2 for administratorUserAccount.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 3 for administratorAdministrator.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 4 for administratorAuthenticated.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 5 for word1.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 6 for word2.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 7 for word3.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 8 for word4.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 9 for word5.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 10 for word6.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 11 for word7.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 12 for word8.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 13 for word9.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 14 for word10.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 15 for word11.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 16 for word12.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 17 for word13.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 18 for word14.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 19 for word15.
+INFO [acme.framework.utilities.DatabasePopulator] > Setting index 20 for spamN1.
+INFO [acme.framework.utilities.DatabasePopulator] Persiting your entities.
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting anonymousUserAccount = acme.framework.entities.UserAccount{id=1, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting anonymousAnonymous = acme.framework.entities.Anonymous{id=2, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting administratorUserAccount = acme.framework.entities.UserAccount{id=3, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting administratorAdministrator = acme.framework.entities.Administrator{id=4, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting administratorAuthenticated = acme.framework.entities.Authenticated{id=5, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word1 = acme.entities.words.Word{id=6, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word2 = acme.entities.words.Word{id=7, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word3 = acme.entities.words.Word{id=8, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word4 = acme.entities.words.Word{id=9, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word5 = acme.entities.words.Word{id=10, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word6 = acme.entities.words.Word{id=11, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word7 = acme.entities.words.Word{id=12, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word8 = acme.entities.words.Word{id=13, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word9 = acme.entities.words.Word{id=14, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word10 = acme.entities.words.Word{id=15, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word11 = acme.entities.words.Word{id=16, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word12 = acme.entities.words.Word{id=17, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word13 = acme.entities.words.Word{id=18, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word14 = acme.entities.words.Word{id=19, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting word15 = acme.entities.words.Word{id=20, version=0}
+INFO [acme.framework.utilities.DatabasePopulator] > Persisting spamN1 = acme.entities.spam.Spam{id=21, version=0}
+INFO [acme.framework.configuration.ShutdownConfiguration] The system is shutting down...
