@@ -20,7 +20,7 @@
 	<import resource="classpath:/WEB-INF/population/conversion-service.xml"/>	
 	<!-- Tasks -->
 	
-	<bean id="task01" class="acme.entities.tasks.Task">
+	<!-- <bean id="task01" class="acme.entities.tasks.Task">
 		<property name="title" value="Title of task 01"/>
 		<property name="executionPeriodInit" value="2021/05/10 19:39"/>
 		<property name="executionPeriodEnd" value="2021/05/11 19:39"/>
@@ -45,5 +45,5 @@
 		<property name="isPublic" value="true"/>
 		<property name="description" value="Description of task 03"/>
 		<property name="optionalLink" value="https://www.google.com"/>
-	</bean>
+	</bean> -->
 </beans>

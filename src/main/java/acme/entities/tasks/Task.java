@@ -15,6 +15,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
 import acme.framework.entities.DomainEntity;
+import acme.framework.entities.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,6 +53,8 @@ public class Task extends DomainEntity {
 	
 	
 	protected Boolean isPublic;
+	
+	protected Manager manager;
 	
 	// Derived attributes -----------------------------------------------------
 
