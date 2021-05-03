@@ -56,7 +56,8 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 
 		Collection<Task> result;
 		final Manager m=new Manager();
-		result = this.repository.findMany(m);
+		final Integer id=m.getId();
+		result = this.repository.findMany(id);
 
 
 		return result;
