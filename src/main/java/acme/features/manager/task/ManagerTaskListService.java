@@ -47,7 +47,7 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionPeriodInit", "executionPeriodEnd", "description", "optionalLink", "isPublic");
+		request.unbind(entity, model, "title", "executionPeriodInit", "executionPeriodEnd", "description", "optionalLink", "isPublic", "managerId");
 	}
 
 	@Override
@@ -55,9 +55,10 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 		assert request != null;
 
 		Collection<Task> result;
-		final Manager m=new Manager();
-		final Integer id=m.getId();
-		result = this.repository.findMany(id);
+		final int id = request.getPrincipal().getAccountId();
+		System.out.println(id);
+		result = this.repository.findTasksByManager(id);
+		System.out.println(this.repository.findTasksByManager(id));
 
 
 		return result;

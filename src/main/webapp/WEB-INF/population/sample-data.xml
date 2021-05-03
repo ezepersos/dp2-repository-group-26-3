@@ -14,8 +14,32 @@
 
 	<import
 		resource="classpath:/WEB-INF/population/conversion-service.xml" />
-	<!-- Tasks -->
 
+	<!-- Manager user -->
+
+	<bean name="managerUserAccount" class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager" />
+		<property name="password" value="manager" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="Man" />
+				<property name="surname" value="Ager" />
+				<property name="email" value="man.ager@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager" />
+				<!-- <ref bean="managerAuthenticated" /> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager" class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount" />
+	</bean>
+	<!-- Tasks -->
 	<bean id="task01" class="acme.entities.tasks.Task">
 		<property name="title" value="Title of task 01" />
 		<property name="executionPeriodInit" value="2021/05/10 19:39" />
@@ -23,24 +47,26 @@
 		<property name="isPublic" value="true" />
 		<property name="description" value="Description of task 01" />
 		<property name="optionalLink" value="https://www.google.com" />
-		<property name="managerId" value="4"/>
+		<property name="managerId" ref="managerManager"/>
 	</bean>
 
-<!-- 	<bean id="task02" class="acme.entities.tasks.Task">
+ 	<bean id="task02" class="acme.entities.tasks.Task">
 		<property name="title" value="Title of task 02" />
 		<property name="executionPeriodInit" value="2021/05/20 20:00" />
 		<property name="executionPeriodEnd" value="2021/05/21 19:39" />
 		<property name="isPublic" value="true" />
 		<property name="description" value="Description of task 02" />
 		<property name="optionalLink" value="https://www.google.com" />
+		<property name="managerId" ref="managerManager"/>
 	</bean>
 
 	<bean id="task03" class="acme.entities.tasks.Task">
 		<property name="title" value="Title of task 03" />
-		<property name="executionPeriodInit" value="2021/05/01 23:35" />
-		<property name="executionPeriodEnd" value="2021/05/01 23:40" />
+		<property name="executionPeriodInit" value="2021/05/10 23:35" />
+		<property name="executionPeriodEnd" value="2021/05/11 23:40" />
 		<property name="isPublic" value="true" />
 		<property name="description" value="Description of task 03" />
 		<property name="optionalLink" value="https://www.google.com" />
-	</bean> -->
+		<property name="managerId" ref="managerManager"/>
+	</bean> 
 </beans>
