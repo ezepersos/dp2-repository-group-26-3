@@ -40,4 +40,13 @@ public class Word extends DomainEntity {
 
 	// Relationships ----------------------------------------------------------
 
+	// Constructor 
+	public Word(@NotBlank final String word) {
+		super();
+		this.word = word;
+	}
+	
+	public Word() {
+		super();
+	}
 }
