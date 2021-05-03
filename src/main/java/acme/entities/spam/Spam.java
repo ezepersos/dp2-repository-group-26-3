@@ -15,7 +15,9 @@ package acme.entities.spam;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -42,7 +44,7 @@ public class Spam extends DomainEntity {
     @Digits(integer = 3, fraction = 2)
     protected Double threshold;
 
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     protected List<Word> spamWordsList;
 
 	// Derived attributes -----------------------------------------------------
