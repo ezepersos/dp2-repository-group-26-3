@@ -12,7 +12,7 @@ import acme.framework.controllers.AbstractController;
 import acme.framework.entities.Manager;
 
 @Controller
-@RequestMapping("/anonymous/task/")
+@RequestMapping("/manager/task/")
 public class ManagerTaskController extends AbstractController<Manager, Task> { 
 	// Internal state ---------------------------------------------------------
 

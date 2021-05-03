@@ -59,13 +59,13 @@
 		<property name="roles">
 			<list>
 				<ref bean="managerManager" />
-				<ref bean="managerAuthenticated" />
+				<!-- <ref bean="managerAuthenticated" /> -->
 			</list>
 		</property>
 	</bean>
 
-	<bean name="anonymousAnonymous" class="acme.framework.entities.Anonymous">
-		<property name="userAccount" ref="anonymousUserAccount" />
+	<bean name="managerManager" class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount" />
 	</bean>
 
 	<!-- Administrators -->
