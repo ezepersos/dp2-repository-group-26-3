@@ -88,6 +88,14 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		final String autorWords = entity.getAuthor().trim().replace(" ", "").toLowerCase();
+		final String infoWords = entity.getInfo().trim().replace(" ", "").toLowerCase();
+		final String textWords = entity.getText().trim().replace(" ", "").toLowerCase();
+ 		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
+ 		final String allWords = autorWords+infoWords+textWords;
+			for(final Word word: listSpam) {
+				errors.state(request,StringUtils.contains(allWords, word.getWord()), "spam", "acme.validation.spam");
+			}
 
 	}
 
@@ -95,22 +103,11 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	public void create(final Request<Shout> request, final Shout entity) {
 		assert request != null;
 		assert entity != null;
-		final String autorWords = entity.getAuthor().trim().replace(" ", "").toLowerCase();
-		final String infoWords = entity.getInfo().trim().replace(" ", "").toLowerCase();
-		final String textWords = entity.getText().trim().replace(" ", "").toLowerCase();
- 		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
- 		final String allWords = autorWords+infoWords+textWords;
-			for(final Word word: listSpam) {
-				if(StringUtils.contains(allWords, word.getWord())) {
-					throw new IllegalArgumentException("The shout contains spam words");
-			}else {
-				Date moment;
+		Date moment;
 
-				moment = new Date(System.currentTimeMillis() - 1);
-				entity.setMoment(moment);
-				this.repository.save(entity);
-			}
-		}
+		moment = new Date(System.currentTimeMillis() - 1);
+		entity.setMoment(moment);
+		this.repository.save(entity);
 
 		
 	}
