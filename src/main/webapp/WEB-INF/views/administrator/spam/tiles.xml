@@ -18,12 +18,10 @@
 
 <tiles-definitions>
 
-	<definition name="anonymous/task/form" extends="master">
-		<put-attribute name="body" type="template" value="../anonymous/task/form.jsp" />
+	<definition name="administrator/spam/form" extends="master">
+		<put-attribute name="body" type="template" value="../administrator/spam/form.jsp" />
 	</definition>
 	
-	<definition name="anonymous/task/list" extends="master">
-		<put-attribute name="body" type="template" value="../anonymous/task/list.jsp" />
-	</definition>
+
 
 </tiles-definitions>

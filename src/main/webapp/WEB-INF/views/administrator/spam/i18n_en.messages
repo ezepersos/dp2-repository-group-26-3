@@ -8,12 +8,13 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-administrator.spam.form.label.threshold = threshold:
+administrator.spam.form.label.threshold = Threshold:
+administrator.spam.form.label.lista = Spam word list (separated by commas):
 
+administrator.spam.form.button.update = update
+administrator.spam.form.button.return = return
 
 
 
  
-administrator.task.list.label.moment = Moment
-administrator.task.list.label.author = Author
-administrator.task.list.label.text = Text
+

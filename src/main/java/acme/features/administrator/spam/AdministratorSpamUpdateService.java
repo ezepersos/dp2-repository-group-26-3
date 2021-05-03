@@ -1,9 +1,14 @@
 package acme.features.administrator.spam;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.spam.Spam;
+import acme.entities.words.Word;
 import acme.framework.components.Errors;
 import acme.framework.components.HttpMethod;
 import acme.framework.components.Model;
@@ -31,11 +36,11 @@ public class AdministratorSpamUpdateService implements AbstractUpdateService<Adm
 	public Spam findOne(final Request<Spam> request) {
 		assert request != null;
 
-		Spam result;
+		Collection<Spam> result;
 
 		result = this.spamRepo.searchOne();
 
-		return result;
+		return result.iterator().next();
 	
 	}
 	
@@ -69,7 +74,15 @@ public class AdministratorSpamUpdateService implements AbstractUpdateService<Adm
 	public void update(final Request<Spam> request,final Spam entity) {
 		assert request != null;
 		assert entity != null;
-
+		System.out.println(request.getModel().getAttribute("lista"));
+		int i = 0;
+		final String[] s = request.getModel().getAttribute("lista").toString().trim().split(",");
+		List<Word> l = new ArrayList<Word>();
+		while(i< s.length) {
+			l.add(new Word(s[i].trim()));
+			i++;
+		}
+		entity.setSpamWordsList(l);
 		this.spamRepo.save(entity);	
 		}
 	@Override

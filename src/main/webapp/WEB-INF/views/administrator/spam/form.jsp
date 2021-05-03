@@ -17,12 +17,11 @@
 
 <acme:form>
 	<acme:form-textbox code="administrator.spam.form.label.threshold" path="threshold"/>
-	<c:forEach items="${spamWordsList}" var="items">
-                    <div style="display: none;">
-                        <acme:form-textbox code="" path="${items.word}"/>
-                    </div>
-                    
-            </c:forEach>
+	<acme:form-textbox code="administrator.spam.form.label.lista" path="lista"/>
+	
 
+		<acme:form-submit code="administrator.spam.form.button.update" action="/administrator/spam/update"/>
+
+	
   	<acme:form-return code="administrator.spam.form.button.return"/>
 </acme:form>

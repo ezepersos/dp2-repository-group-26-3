@@ -8,4 +8,8 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-administrator.spam.form.label.threshold = threshold:
+administrator.spam.form.label.threshold = Umbral:
+administrator.spam.form.label.lista = Lista de palabras de spam (separadas por comas):
+
+administrator.spam.form.button.update = actualizar
+administrator.spam.form.button.return = volver
