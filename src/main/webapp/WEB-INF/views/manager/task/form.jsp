@@ -22,7 +22,7 @@
 	<acme:form-textarea code="manager.task.form.label.description" path="description"/>
 	<acme:form-url code="manager.task.form.label.optionalLink" path="optionalLink"/>
 	
-	<acme:form-submit code="manager.task.form.button.create" action="/manager/task/create"/>
+	<acme:form-submit test="${command == 'create'}" code="manager.task.form.button.create" action="/manager/task/create"/>
 	<acme:form-submit test="${command == 'show'}" code="manager.task.form.button.update" action="/manager/task/update"/>
 	<acme:form-submit test="${command == 'show'}" code="manager.task.form.button.delete" action="/manager/task/delete"/>
 	<acme:form-submit test="${command == 'delete'}" code="manager.task.form.button.delete" action="/manager/task/delete"/>

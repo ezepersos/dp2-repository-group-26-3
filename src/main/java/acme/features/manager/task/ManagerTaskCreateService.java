@@ -94,12 +94,10 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert entity != null;
 
 		final Integer managerId= request.getPrincipal().getActiveRoleId();
-		final Manager m=this.repository.findManagerById(managerId);
-		m.getTasks().add(entity);
+		entity.setManagerId(this.repository.findManagerById(managerId));
 		
 		
 		this.repository.save(entity);
-		this.repository.save(m);
 	}
 
 }

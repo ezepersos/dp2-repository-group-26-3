@@ -1,8 +1,7 @@
 package acme.features.manager.task;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import acme.entities.tasks.Task;
 import acme.framework.components.Errors;
@@ -11,6 +10,7 @@ import acme.framework.components.Request;
 import acme.framework.entities.Manager;
 import acme.framework.services.AbstractDeleteService;
 
+@Service
 public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, Task> {
 
 	// Internal state ---------------------------------------------------------
@@ -33,10 +33,9 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 
 		taskId = request.getModel().getInteger("id");
 		task = this.repository.findById(taskId);
-		final Collection<Task> collection = this.repository.findTasksByManager(request.getPrincipal().getActiveRoleId());
+		final Manager manager = this.repository.findManagerById(request.getPrincipal().getActiveRoleId());
 
-		result = collection.contains(task);
-		System.out.println(result);
+		result = manager.equals(task.getManagerId());
 		return result;
 	}
 
@@ -82,9 +81,7 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 	public void delete(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
-		System.out.println("llega");
 		this.repository.delete(entity);
-		System.out.println("llega2");
 	}
 
 }
