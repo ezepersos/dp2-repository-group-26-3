@@ -32,13 +32,16 @@
 			<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/dashboard/show"/>
 			<acme:menu-suboption code="master.menu.administrator.user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-suboption code="master.menu.administrator.spam" action="/administrator/spam/show"/>
+			<acme:menu-suboption code="master.menu.authenticated.list-task" action="/authenticated/task/list" access="isAuthenticated()" />
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-initial" action="/master/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-sample" action="/master/populate-sample"/>			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
 		</acme:menu-option>
-
+		<acme:menu-option code="master.menu.authenticated" access="hasRole('Authenticated') and not hasRole('Administrator')">
+			<acme:menu-suboption code="master.menu.authenticated.list-task" action="/authenticated/task/list"/>
+		</acme:menu-option>
 		<acme:menu-option code="master.menu.manager"
 			access="hasRole('Manager')">
 			<acme:menu-suboption code="master.menu.manager.my-tasks"
@@ -80,8 +83,6 @@
 				access="!hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.user-account.consumer"
 				action="/authenticated/consumer/update" access="hasRole('Consumer')" />
-			<acme:menu-suboption code="master.menu.authenticated.list-task"
-				action="/authenticated/task/list" access="isAuthenticated()" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out"
