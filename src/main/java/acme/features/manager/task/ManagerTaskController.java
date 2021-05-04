@@ -22,6 +22,9 @@ public class ManagerTaskController extends AbstractController<Manager, Task> {
 	
 	@Autowired
 	protected ManagerTaskShowService	showService;
+	
+	@Autowired
+	protected ManagerTaskCreateService createService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -29,5 +32,6 @@ public class ManagerTaskController extends AbstractController<Manager, Task> {
 	protected void initialise() {
 		super.addBasicCommand(BasicCommand.LIST, this.listService);
 		super.addBasicCommand(BasicCommand.SHOW, this.showService);
+		super.addBasicCommand(BasicCommand.CREATE, this.createService);
 	}
 }

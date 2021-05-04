@@ -36,6 +36,7 @@ master.menu.anonymous.list-task = Ver tareas
 
 master.menu.manager = Mánager
 master.menu.manager.my-tasks = Mis tareas
+master.menu.manager.create = Crear tarea
 
 # master.menu.administrator ###################################################
 

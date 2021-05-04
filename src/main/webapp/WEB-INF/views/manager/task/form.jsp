@@ -22,6 +22,7 @@
 	<acme:form-textarea code="manager.task.form.label.description" path="description"/>
 	<acme:form-url code="manager.task.form.label.optionalLink" path="optionalLink"/>
 	
-
+	
+	<acme:form-submit code="manager.task.form.button.create" action="/manager/task/create"/>
   	<acme:form-return code="manager.task.form.button.return"/>
 </acme:form>
