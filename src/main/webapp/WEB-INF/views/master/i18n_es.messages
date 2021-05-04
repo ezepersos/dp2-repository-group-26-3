@@ -35,6 +35,12 @@ master.menu.anonymous.list-shout = Ver gritos
 master.menu.anonymous.create-shout = ¡Dar un grito!
 
 
+# master.menu.manager #######################################################
+
+master.menu.manager = Mánager
+master.menu.manager.my-tasks = Mis tareas
+master.menu.manager.create = Crear tarea
+
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrador

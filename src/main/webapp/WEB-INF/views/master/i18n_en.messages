@@ -34,6 +34,12 @@ master.menu.anonymous.list-task = List tasks
 master.menu.anonymous.list-shout = List shouts
 master.menu.anonymous.create-shout = Shout!
 
+# master.menu.manager #######################################################
+
+master.menu.manager = Manager
+master.menu.manager.my-tasks = My tasks
+master.menu.manager.create = Create Task
+
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
