@@ -32,6 +32,11 @@ master.menu.anonymous = Anonymous
 master.menu.anonymous.favourite-link = Favourite link
 master.menu.anonymous.list-task = List tasks
 
+# master.menu.authenticated #######################################################
+
+master.menu.authenticated.list-task = Task list
+
+
 # master.menu.manager #######################################################
 
 master.menu.manager = Manager
