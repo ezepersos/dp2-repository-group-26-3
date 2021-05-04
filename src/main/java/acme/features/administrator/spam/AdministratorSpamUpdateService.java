@@ -23,13 +23,19 @@ public class AdministratorSpamUpdateService implements AbstractUpdateService<Adm
 	
 	@Autowired
 	protected AdministratorSpamRepository spamRepo;
-
+	
 	@Override
 	public boolean authorise(final Request<Spam> request) {
 		assert request != null;
+		boolean result= false;
+		if(request.getPrincipal().hasRole("Administrator")) {
+			result= true;
+			
+		}
 
-		return true;
+		return result;
 	}
+
 	
 	
 	@Override

@@ -35,8 +35,13 @@ public class AdministratorSpamShowService implements AbstractShowService<Adminis
 	@Override
 	public boolean authorise(final Request<Spam> request) {
 		assert request != null;
+		boolean result= false;
+		if(request.getPrincipal().hasRole("Administrator")) {
+			result= true;
+			
+		}
 
-		return true;
+		return result;
 	}
 
 	@Override
