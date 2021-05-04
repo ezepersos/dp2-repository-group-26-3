@@ -32,6 +32,11 @@ master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
 master.menu.anonymous.list-task = Ver tareas
 
+# master.menu.manager #######################################################
+
+master.menu.manager = Mánager
+master.menu.manager.my-tasks = Mis tareas
+
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrador
