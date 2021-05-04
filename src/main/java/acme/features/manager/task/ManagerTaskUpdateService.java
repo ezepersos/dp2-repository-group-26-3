@@ -1,9 +1,14 @@
 package acme.features.manager.task;
 
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.tasks.Task;
+import acme.entities.words.Word;
+import acme.features.administrator.spam.AdministratorSpamShowService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -17,7 +22,9 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 
 	@Autowired
 	protected ManagerTaskRepository repository;
-
+	@Autowired
+	protected AdministratorSpamShowService spamService;
+	
 	// AbstractUpdateService<Administrator, UserAccount> interface -------------
 
 
@@ -76,8 +83,19 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		final String title = entity.getTitle().trim().replace(" ", "").toLowerCase();
+		final String desc = entity.getDescription().trim().replace(" ", "").toLowerCase();
+ 		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
+ 		final String allWords = title+desc;
+ 		boolean containsSpam = false;
+			for(final Word word: listSpam) {
+				containsSpam = StringUtils.contains(allWords, word.getWord());
+				if(containsSpam) {
+					break;
+				}
+			}
+			errors.state(request,!containsSpam, "spam", "acme.validation.spam.task");
 	}
-
 	@Override
 	public void update(final Request<Task> request, final Task entity) {
 		assert request != null;
