@@ -1,19 +1,5 @@
-/*
- * AnonymousShoutCreateService.java
- *
- * Copyright (C) 2012-2021 Rafael Corchuelo.
- *
- * In keeping with the traditional purpose of furthering education and research, it is
- * the policy of the copyright owner to permit non-commercial use and redistribution of
- * this software. It has been tested carefully, but it is not guaranteed for any particular
- * purposes. The copyright owner does not offer any warranties or representations, nor do
- * they accept any liabilities with respect to them.
- */
-
 package acme.features.manager.task;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,10 +13,10 @@ import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Manager;
-import acme.framework.services.AbstractCreateService;
+import acme.framework.services.AbstractUpdateService;
 
 @Service
-public class ManagerTaskCreateService implements AbstractCreateService<Manager, Task> {
+public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, Task> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -38,14 +24,26 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 	protected ManagerTaskRepository repository;
 	@Autowired
 	protected AdministratorSpamShowService spamService;
+	
+	// AbstractUpdateService<Administrator, UserAccount> interface -------------
 
-	// AbstractCreateService<Administrator, Task> interface --------------
 
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
 
-		return true;
+		boolean result;
+		int taskId;
+
+		Task task;
+		
+
+		taskId = request.getModel().getInteger("id");
+		task = this.repository.findById(taskId);
+		final Manager manager = this.repository.findManagerById(request.getPrincipal().getActiveRoleId());
+
+		result = manager.equals(task.getManagerId());
+		return result;
 	}
 
 	@Override
@@ -63,25 +61,19 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title",  "executionPeriodInit",
-			"executionPeriodEnd","description","optionalLink", "isPublic");
+
+		request.unbind(entity, model, "title", "executionPeriodInit", "executionPeriodEnd", "description", "optionalLink", "isPublic");
 	}
 
 	@Override
-	public Task instantiate(final Request<Task> request) {
+	public Task findOne(final Request<Task> request) {
 		assert request != null;
 
 		Task result;
+		int id;
 
-
-		result = new Task();
-		result.setDescription("descripcion");
-		result.setExecutionPeriodEnd(Date.valueOf(LocalDate.now()));
-		result.setExecutionPeriodInit(Date.valueOf(LocalDate.now()));
-		result.setTitle("Task");
-		result.setIsPublic(true);
-		result.setOptionalLink("https://www.google.com");
-		
+		id = request.getModel().getInteger("id");
+		result = this.repository.findById(id);
 
 		return result;
 	}
@@ -104,16 +96,12 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 			}
 			errors.state(request,!containsSpam, "spam", "acme.validation.spam.task");
 	}
-
 	@Override
-	public void create(final Request<Task> request, final Task entity) {
+	public void update(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
 
-		final Integer managerId= request.getPrincipal().getActiveRoleId();
-		entity.setManagerId(this.repository.findManagerById(managerId));
-		
-		
+
 		this.repository.save(entity);
 	}
 

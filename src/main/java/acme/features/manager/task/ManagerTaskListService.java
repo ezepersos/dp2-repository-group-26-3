@@ -37,8 +37,19 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
+		
+		Collection<Task> collection;
+		final int id = request.getPrincipal().getActiveRoleId();
+		collection = this.repository.findTasksByManager(id);
+		final Manager manager = this.repository.findManagerById(request.getPrincipal().getActiveRoleId());
+		boolean res = manager!=null;
 
-		return true;
+		for (final Task t: collection) {
+			if (t.getManagerId().getId()!=manager.getId()&&res==true)
+				res=false;
+			}
+
+		return res;
 	}
 
 	@Override
