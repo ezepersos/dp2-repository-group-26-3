@@ -44,6 +44,9 @@
 		<property name="userAccount" ref="anonymousUserAccount" />
 	</bean>
 
+
+
+
 	<!-- Administrators -->
 	
 	<bean name="administratorUserAccount" class="acme.framework.entities.UserAccount">
@@ -72,5 +75,80 @@
 	<bean name="administratorAuthenticated" class="acme.framework.entities.Authenticated">
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
+
+	<!-- Spam words -->
+	
+	<bean name="word1" class="acme.entities.words.Word">
+		<property name="word" value="sex" />
+	</bean>
+	<bean name="word2" class="acme.entities.words.Word">
+		<property name="word" value="hard core" />
+	</bean>
+	<bean name="word3" class="acme.entities.words.Word">
+		<property name="word" value="viagra" />
+	</bean>
+	<bean name="word4" class="acme.entities.words.Word">
+		<property name="word" value="cialis" />
+	</bean>
+	<bean name="word5" class="acme.entities.words.Word">
+		<property name="word" value="nigeria" />
+	</bean>
+	<bean name="word6" class="acme.entities.words.Word">
+		<property name="word" value="you’ve won" />
+	</bean>
+	<bean name="word7" class="acme.entities.words.Word">
+		<property name="word" value="million dollar" />
+	</bean>
+	<bean name="word8" class="acme.entities.words.Word">
+		<property name="word" value="sexo" />
+	</bean>
+	<bean name="word9" class="acme.entities.words.Word">
+		<property name="word" value="duro" />
+	</bean>
+	<bean name="word10" class="acme.entities.words.Word">
+		<property name="word" value="has ganado" />
+	</bean>
+	<bean name="word11" class="acme.entities.words.Word">
+		<property name="word" value="millón de dolares" />
+	</bean>
+	<bean name="word12" class="acme.entities.words.Word">
+		<property name="word" value="penis" />
+	</bean>
+	<bean name="word13" class="acme.entities.words.Word">
+		<property name="word" value="pene" />
+	</bean>
+	<bean name="word14" class="acme.entities.words.Word">
+		<property name="word" value="shit" />
+	</bean>
+	<bean name="word15" class="acme.entities.words.Word">
+		<property name="word" value="mierda" />
+	</bean>
+
+	<bean name="spamN1" class="acme.entities.spam.Spam">
+		<property name="threshold" value="10.00" />
+		<property name="spamWordsList">
+			<list>
+				<ref bean="word1" />
+				<ref bean="word2" />
+				<ref bean="word3" />
+				<ref bean="word4" />
+				<ref bean="word5" />
+				<ref bean="word6" />
+				<ref bean="word7" />
+				<ref bean="word8" />
+				<ref bean="word9" />
+				<ref bean="word10" />
+				<ref bean="word11" />
+				<ref bean="word12" />
+				<ref bean="word13" />
+				<ref bean="word14" />
+				<ref bean="word15" />
+
+			</list>
+		</property>
+	</bean>
+
+	
 	
 </beans>
+
