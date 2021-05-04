@@ -25,5 +25,9 @@
 	<definition name="manager/task/list" extends="master">
 		<put-attribute name="body" type="template" value="../manager/task/list.jsp" />
 	</definition>
+	
+		<definition name="manager/task/create" extends="master">
+		<put-attribute name="body" type="template" value="../manager/task/create.jsp" />
+	</definition>
 
 </tiles-definitions>

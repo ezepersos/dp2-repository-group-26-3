@@ -45,6 +45,8 @@
 			access="hasRole('Manager')">
 			<acme:menu-suboption code="master.menu.manager.my-tasks"
 				action="/manager/task/list" />
+			<acme:menu-suboption code="master.menu.manager.create"
+				action="/manager/task/create" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider"
@@ -81,7 +83,7 @@
 			<acme:menu-suboption code="master.menu.user-account.consumer"
 				action="/authenticated/consumer/update" access="hasRole('Consumer')" />
 			<acme:menu-suboption code="master.menu.authenticated.list-task"
-				action="/authenticated/task/list" access="isAuthenticated()" />
+				action="/authenticated/task/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.sign-out"
