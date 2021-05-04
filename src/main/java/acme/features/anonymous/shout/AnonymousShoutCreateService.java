@@ -13,11 +13,15 @@
 package acme.features.anonymous.shout;
 
 import java.util.Date;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.shouts.Shout;
+import acme.entities.words.Word;
+import acme.features.administrator.spam.AdministratorSpamShowService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -31,6 +35,8 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 	@Autowired
 	protected AnonymousShoutRepository repository;
+	@Autowired
+	protected AdministratorSpamShowService spamService;
 
 	// AbstractCreateService<Administrator, Shout> interface --------------
 
@@ -82,6 +88,19 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		final String autorWords = entity.getAuthor().trim().replace(" ", "").toLowerCase();
+		final String infoWords = entity.getInfo().trim().replace(" ", "").toLowerCase();
+		final String textWords = entity.getText().trim().replace(" ", "").toLowerCase();
+ 		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
+ 		final String allWords = autorWords+infoWords+textWords;
+ 		boolean containsSpam = false;
+			for(final Word word: listSpam) {
+				containsSpam = StringUtils.contains(allWords, word.getWord());
+				if(containsSpam) {
+					break;
+				}
+			}
+			errors.state(request,!containsSpam, "spam", "acme.validation.spam");
 
 	}
 
@@ -89,12 +108,13 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	public void create(final Request<Shout> request, final Shout entity) {
 		assert request != null;
 		assert entity != null;
-
 		Date moment;
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
 		this.repository.save(entity);
+
+		
 	}
 
 }

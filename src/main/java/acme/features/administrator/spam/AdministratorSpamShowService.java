@@ -55,5 +55,16 @@ public class AdministratorSpamShowService implements AbstractShowService<Adminis
 		return result;
 
 	}
+	
+	
+	public Spam findAll() {
+
+		Spam result;
+
+		result = this.spamRepo.searchOne().iterator().next();
+		
+		return result;
+
+	}
 
 }
