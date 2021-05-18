@@ -1,12 +1,1 @@
-Sprint 2
 
-1.0 Initial data
-1.1 Added shout listing and sorting by time, post shout and show details for an anonymous user
-1.2 Added listing and displaying details of public task for an authenticated user
-1.3 Added administrator's control panel
-1.4 Added the Spam module
-1.4.1 Added a list of spam words
-1.5 Added a restriction not to post shouts if they are considered spam words
-1.6 Added Administrator role
-1.6.1 Added the ability for a manager to manage his tasks (Create, display and update)
-1.7 Added customization parameters by an Administrator
