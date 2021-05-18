@@ -1,14 +1,6 @@
-# README.txt
-#
-# Copyright (C) 2012-2021 Rafael Corchuelo.
-#
-# In keeping with the traditional purpose of furthering education and research, it is
-# the policy of the copyright owner to permit non-commercial use and redistribution of
-# this software. It has been tested carefully, but it is not guaranteed for any particular
-# purposes.  The copyright owner does not offer any warranties or representations, nor do
-# they accept any liabilities with respect to them.
+Repository: https://github.com/ezepersos/dp2-repository-group-26-Acme-Planner
+Release: https://github.com/ezepersos/dp2-repository-group-26-Acme-Planner/releases/tag/1.0
+Deployment URL: http://app-360639b9-fff7-48d9-9e1c-ba91e4587578.cleverapps.io/Acme-Planner
 
-This is the Starter Project, which is intended to be a core learning asset for the students
-who have enroled the Design and Testing subject of the Software Engineering curriculum of the 
-University of Sevilla.  This project helps them start working on their new information system 
-projects.
+This is Acme Planner, the project repository of group 26 of the design and testing course.
+Customized from the Starter-project and in which the tasks of this sprint 2 are worked on.

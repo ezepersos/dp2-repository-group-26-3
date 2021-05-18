@@ -1,5 +1,5 @@
 /*
- * AnonymousShoutListService.java
+ * AuthenticatedShoutListService.java
  *
  * Copyright (C) 2012-2021 Rafael Corchuelo.
  *
@@ -9,8 +9,7 @@
  * purposes. The copyright owner does not offer any warranties or representations, nor do
  * they accept any liabilities with respect to them.
  */
-
-package acme.features.anonymous.task;
+package acme.features.authenticated.task;
 
 import java.util.Collection;
 
@@ -20,20 +19,20 @@ import org.springframework.stereotype.Service;
 import acme.entities.tasks.Task;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Anonymous;
+import acme.framework.entities.Authenticated;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AnonymousTaskListService implements AbstractListService<Anonymous, Task> {
+public class AuthenticatedTaskListService implements AbstractListService<Authenticated, Task> {
 
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousTaskRepository repository;
+	protected AuthenticatedTaskRepository repository;
 
 
-	// AbstractListService<Anonymous, Task> interface --------------
+	// AbstractListService<Administrator, Task> interface --------------
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
@@ -63,4 +62,3 @@ public class AnonymousTaskListService implements AbstractListService<Anonymous, 
 	}
 
 }
-

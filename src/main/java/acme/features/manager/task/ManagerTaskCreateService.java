@@ -10,45 +10,46 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.anonymous.shout;
+package acme.features.manager.task;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.shouts.Shout;
+import acme.entities.tasks.Task;
 import acme.entities.words.Word;
 import acme.features.administrator.spam.AdministratorSpamShowService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Anonymous;
+import acme.framework.entities.Manager;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AnonymousShoutCreateService implements AbstractCreateService<Anonymous, Shout> {
+public class ManagerTaskCreateService implements AbstractCreateService<Manager, Task> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousShoutRepository repository;
+	protected ManagerTaskRepository repository;
 	@Autowired
 	protected AdministratorSpamShowService spamService;
 
-	// AbstractCreateService<Administrator, Shout> interface --------------
+	// AbstractCreateService<Administrator, Task> interface --------------
 
 	@Override
-	public boolean authorise(final Request<Shout> request) {
+	public boolean authorise(final Request<Task> request) {
 		assert request != null;
 
 		return true;
 	}
 
 	@Override
-	public void bind(final Request<Shout> request, final Shout entity, final Errors errors) {
+	public void bind(final Request<Task> request, final Task entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -57,42 +58,43 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	}
 
 	@Override
-	public void unbind(final Request<Shout> request, final Shout entity, final Model model) {
+	public void unbind(final Request<Task> request, final Task entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "author", "text", "info");
+		request.unbind(entity, model, "title",  "executionPeriodInit",
+			"executionPeriodEnd","description","optionalLink", "isPublic");
 	}
 
 	@Override
-	public Shout instantiate(final Request<Shout> request) {
+	public Task instantiate(final Request<Task> request) {
 		assert request != null;
 
-		Shout result;
-		Date moment;
+		Task result;
 
-		moment = new Date(System.currentTimeMillis() - 1);
 
-		result = new Shout();
-		result.setAuthor("John Doe");
-		result.setText("Lorem ipsum!");
-		result.setMoment(moment);
-		result.setInfo("http://example.org");
+		result = new Task();
+		result.setDescription("descripcion");
+		result.setExecutionPeriodEnd(Date.valueOf(LocalDate.now()));
+		result.setExecutionPeriodInit(Date.valueOf(LocalDate.now()));
+		result.setTitle("Task");
+		result.setIsPublic(true);
+		result.setOptionalLink("https://www.google.com");
+		
 
 		return result;
 	}
 
 	@Override
-	public void validate(final Request<Shout> request, final Shout entity, final Errors errors) {
+	public void validate(final Request<Task> request, final Task entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		final String autorWords = entity.getAuthor().trim().replace(" ", "").toLowerCase();
-		final String infoWords = entity.getInfo().trim().replace(" ", "").toLowerCase();
-		final String textWords = entity.getText().trim().replace(" ", "").toLowerCase();
+		final String title = entity.getTitle().trim().replace(" ", "").toLowerCase();
+		final String desc = entity.getDescription().trim().replace(" ", "").toLowerCase();
  		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
- 		final String allWords = autorWords+infoWords+textWords;
+ 		final String allWords = title+desc;
  		boolean containsSpam = false;
 			for(final Word word: listSpam) {
 				containsSpam = StringUtils.contains(allWords, word.getWord());
@@ -100,21 +102,19 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 					break;
 				}
 			}
-			errors.state(request,!containsSpam, "spam", "acme.validation.spam");
-
+			errors.state(request,!containsSpam, "spam", "acme.validation.spam.task");
 	}
 
 	@Override
-	public void create(final Request<Shout> request, final Shout entity) {
+	public void create(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
-		Date moment;
 
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setMoment(moment);
-		this.repository.save(entity);
-
+		final Integer managerId= request.getPrincipal().getActiveRoleId();
+		entity.setManagerId(this.repository.findManagerById(managerId));
 		
+		
+		this.repository.save(entity);
 	}
 
 }

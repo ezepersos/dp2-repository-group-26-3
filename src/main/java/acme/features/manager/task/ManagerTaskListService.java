@@ -1,5 +1,5 @@
 /*
- * AnonymousShoutListService.java
+ * ManagerShoutListService.java
  *
  * Copyright (C) 2012-2021 Rafael Corchuelo.
  *
@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.anonymous.task;
+package acme.features.manager.task;
 
 import java.util.Collection;
 
@@ -20,25 +20,36 @@ import org.springframework.stereotype.Service;
 import acme.entities.tasks.Task;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Anonymous;
+import acme.framework.entities.Manager;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AnonymousTaskListService implements AbstractListService<Anonymous, Task> {
+public class ManagerTaskListService implements AbstractListService<Manager, Task> {
 
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousTaskRepository repository;
+	protected ManagerTaskRepository repository;
 
 
-	// AbstractListService<Anonymous, Task> interface --------------
+	// AbstractListService<Administrator, Task> interface --------------
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
+		
+		Collection<Task> collection;
+		final int id = request.getPrincipal().getActiveRoleId();
+		collection = this.repository.findTasksByManager(id);
+		final Manager manager = this.repository.findManagerById(request.getPrincipal().getActiveRoleId());
+		boolean res = manager!=null;
 
-		return true;
+		for (final Task t: collection) {
+			if (t.getManagerId().getId()!=manager.getId()&&res==true)
+				res=false;
+			}
+
+		return res;
 	}
 
 	@Override
@@ -55,12 +66,11 @@ public class AnonymousTaskListService implements AbstractListService<Anonymous, 
 		assert request != null;
 
 		Collection<Task> result;
-
-		result = this.repository.findMany();
+		final int id = request.getPrincipal().getActiveRoleId();
+		result = this.repository.findTasksByManager(id);
 
 
 		return result;
 	}
 
 }
-
