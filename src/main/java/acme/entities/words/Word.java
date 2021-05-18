@@ -34,7 +34,7 @@ public class Word extends DomainEntity {
 	
 	
 	@NotBlank
-	protected String word;
+	protected String spamWord;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -43,7 +43,7 @@ public class Word extends DomainEntity {
 	// Constructor 
 	public Word(@NotBlank final String word) {
 		super();
-		this.word = word;
+		this.spamWord = word;
 	}
 	
 	public Word() {
