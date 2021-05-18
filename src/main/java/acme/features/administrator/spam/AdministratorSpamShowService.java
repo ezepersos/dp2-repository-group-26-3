@@ -36,7 +36,9 @@ public class AdministratorSpamShowService implements AbstractShowService<Adminis
 	public boolean authorise(final Request<Spam> request) {
 		assert request != null;
 		boolean result= false;
-		if(request.getPrincipal().hasRole("Administrator")) {
+
+		if(this.spamRepo.findAdminById(request.getPrincipal().getActiveRoleId())!=null) {
+			
 			result= true;
 			
 		}
