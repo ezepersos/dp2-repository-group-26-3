@@ -12,7 +12,6 @@
 
 package acme.features.administrator.dashboard;
 
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,20 +69,20 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		Double						minimumTaskWorloads;
 		Double						maximumTaskWorloads;
 
-		List<Task> totalTasks = this.repository.allTasks();
-		averageTaskWorloads = calculateWorkloadAverage(totalTasks);
-		deviationTaskWorloads = calculateWorkloadDeviation(totalTasks);
+		final List<Task> totalTasks = this.repository.allTasks();
+		averageTaskWorloads = this.checkValue(this.calculateWorkloadAverage(totalTasks));
+		deviationTaskWorloads = this.checkValue(this.calculateWorkloadDeviation(totalTasks));
 		totalNumberOfPublicTasks = this.repository.totalNumberOfPublicTasks();
 		totalNumberOfPrivateTasks = this.repository.totalNumberOfPrivateTasks();
 		totalNumberOfFinishedTasks = this.repository.totalNumberOfFinishedTasks();
 		totalNumberOfNonFinishedTasks = this.repository.totalNumberOfNonFinishedTasks();
-		averageTaskExecutionPeriods= this.repository.averageTaskExecutionPeriods();
-		deviationTaskExecutionPeriods = this.repository.deviationTaskExecutionPeriods();
-		minimumTaskExecutionPeriods = this.repository.minimumTaskExecutionPeriods();
-		maximumTaskExecutionPeriods = this.repository.maximumTaskExecutionPeriods();
-		minimumTaskWorloads = totalTasks.stream().mapToDouble(x->x.workload()).min().orElse(0.0);
-		maximumTaskWorloads = totalTasks.stream().mapToDouble(x->x.workload()).max().orElse(0.0);
-
+		averageTaskExecutionPeriods= this.checkValue(this.repository.averageTaskExecutionPeriods());
+		deviationTaskExecutionPeriods = this.checkValue(this.repository.deviationTaskExecutionPeriods());
+		minimumTaskExecutionPeriods = this.checkValue(this.repository.minimumTaskExecutionPeriods());
+		maximumTaskExecutionPeriods = this.checkValue(this.repository.maximumTaskExecutionPeriods());
+		minimumTaskWorloads = this.checkValue(this.takeMinimum(totalTasks));
+		maximumTaskWorloads = this.checkValue(this.takeMaximum(totalTasks));
+		
 		result = new Dashboard();
 		result.setTotalNumberOfPublicTasks(totalNumberOfPublicTasks);
 		result.setTotalNumberOfPrivateTasks(totalNumberOfPrivateTasks);
@@ -100,22 +99,61 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		return result;
 	}
 
-	private Double calculateWorkloadDeviation(List<Task> totalTasks) {
+
+	private Double checkValue(final Double value) {
+		Double res = value;
+		if (value == null || value.isNaN()) {
+			res = .0;
+		}
+		return res;
+	}
+
+	private Double takeMaximum(final List<Task> totalTasks) {
+		if (totalTasks.isEmpty()) {
+			return .0;
+		}else {
+			
+		Double res = Double.MAX_VALUE;
+		for(final Task t: totalTasks) {
+			if (res > t.workload()) {
+				res = t.workload();
+			}
+		}
+		return res;
+		}
+	}
+
+	private Double takeMinimum(final List<Task> totalTasks) {
+		if (totalTasks.isEmpty()) {
+			return .0;
+		}else {
+			
+		Double res = Double.MIN_VALUE;
+		for(final Task t: totalTasks) {
+			if (res < t.workload()) {
+				res = t.workload();
+			}
+		}
+		return res;
+		}
+	}
+
+	private Double calculateWorkloadDeviation(final List<Task> totalTasks) {
 		Double totalWorkload = .0;
 		Double deviation = .0;
-		Integer numberOfTasks = totalTasks.size();
-		for(Task task: totalTasks){
+		final Integer numberOfTasks = totalTasks.size();
+		for(final Task task: totalTasks){
 			totalWorkload += task.workload();
 		}
-		Double mean = totalWorkload/numberOfTasks;
-		for(Task task: totalTasks){
+		final Double mean = totalWorkload/numberOfTasks;
+		for(final Task task: totalTasks){
 			deviation += Math.pow(task.workload()-mean, 2);
 
 		}
 		return Math.sqrt(deviation/numberOfTasks);
 	}
 
-	private Double calculateWorkloadAverage(List<Task> totalTasks) {
+	private Double calculateWorkloadAverage(final List<Task> totalTasks) {
 		Double average = .0;
 		for (int i = 0; i < totalTasks.size(); i++) {
 			average += totalTasks.get(i).workload();

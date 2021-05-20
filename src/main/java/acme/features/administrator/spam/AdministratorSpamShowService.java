@@ -25,9 +25,9 @@ public class AdministratorSpamShowService implements AbstractShowService<Adminis
 		assert model != null;
 
 		StringBuilder s = new StringBuilder(500);
-		s = s.append(entity.getSpamWordsList().get(0).getWord());
+		s = s.append(entity.getSpamWordsList().get(0).getSpamWord());
 		for (final Word w : entity.getSpamWordsList().subList(1, entity.getSpamWordsList().size())) {
-			s = s.append(", " + w.getWord());
+			s = s.append(", " + w.getSpamWord());
 		}
 		model.setAttribute("lista", s);
 		request.unbind(entity, model, "threshold", "spamWordsList");

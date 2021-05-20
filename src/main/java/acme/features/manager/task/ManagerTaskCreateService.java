@@ -97,7 +97,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
  		final String allWords = title+desc;
  		boolean containsSpam = false;
 			for(final Word word: listSpam) {
-				containsSpam = StringUtils.contains(allWords, word.getWord());
+				containsSpam = StringUtils.contains(allWords, word.getSpamWord());
 				if(containsSpam) {
 					break;
 				}
