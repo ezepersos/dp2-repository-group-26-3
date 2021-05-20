@@ -25,20 +25,6 @@ public class DashBoardTest extends AcmeTest {
 		super.clickAndGo(By.linkText("Populate DB (initial)"));
 
 		this.signOut();
-
-
-		//Add new user
-		//Create 3 task with this user
-
-		//Iniciar como admin
-		//Ver el dashboard como admin
-
-		//Registrarse como usuario 
-
-		//Añadir una task como ese usuario
-
-		//Iniciar como admin y ver el dashboard
-
 	}
 
 	// Test cases -------------------------------------------------------------
