@@ -70,19 +70,19 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		Double						maximumTaskWorloads;
 
 		final List<Task> totalTasks = this.repository.allTasks();
-		averageTaskWorloads = this.calculateWorkloadAverage(totalTasks);
-		deviationTaskWorloads = this.calculateWorkloadDeviation(totalTasks);
+		averageTaskWorloads = this.checkValue(this.calculateWorkloadAverage(totalTasks));
+		deviationTaskWorloads = this.checkValue(this.calculateWorkloadDeviation(totalTasks));
 		totalNumberOfPublicTasks = this.repository.totalNumberOfPublicTasks();
 		totalNumberOfPrivateTasks = this.repository.totalNumberOfPrivateTasks();
 		totalNumberOfFinishedTasks = this.repository.totalNumberOfFinishedTasks();
 		totalNumberOfNonFinishedTasks = this.repository.totalNumberOfNonFinishedTasks();
-		averageTaskExecutionPeriods= this.repository.averageTaskExecutionPeriods();
-		deviationTaskExecutionPeriods = this.repository.deviationTaskExecutionPeriods();
-		minimumTaskExecutionPeriods = this.repository.minimumTaskExecutionPeriods();
-		maximumTaskExecutionPeriods = this.repository.maximumTaskExecutionPeriods();
-		minimumTaskWorloads = this.takeMinimum(totalTasks);
-		maximumTaskWorloads = this.takeMaximum(totalTasks);
-
+		averageTaskExecutionPeriods= this.checkValue(this.repository.averageTaskExecutionPeriods());
+		deviationTaskExecutionPeriods = this.checkValue(this.repository.deviationTaskExecutionPeriods());
+		minimumTaskExecutionPeriods = this.checkValue(this.repository.minimumTaskExecutionPeriods());
+		maximumTaskExecutionPeriods = this.checkValue(this.repository.maximumTaskExecutionPeriods());
+		minimumTaskWorloads = this.checkValue(this.takeMinimum(totalTasks));
+		maximumTaskWorloads = this.checkValue(this.takeMaximum(totalTasks));
+		
 		result = new Dashboard();
 		result.setTotalNumberOfPublicTasks(totalNumberOfPublicTasks);
 		result.setTotalNumberOfPrivateTasks(totalNumberOfPrivateTasks);
@@ -97,6 +97,15 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setMinimumTaskWorloads(minimumTaskWorloads);
 		result.setMaximumTaskWorloads(maximumTaskWorloads);
 		return result;
+	}
+
+
+	private Double checkValue(final Double value) {
+		Double res = value;
+		if (value == null || value.isNaN()) {
+			res = .0;
+		}
+		return res;
 	}
 
 	private Double takeMaximum(final List<Task> totalTasks) {
