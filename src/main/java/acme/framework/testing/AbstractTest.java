@@ -75,12 +75,15 @@ public abstract class AbstractTest {
 		assert !StringHelper.isBlank(contextPath) && contextPath.startsWith("/") && !contextPath.endsWith("/");
 		assert !StringHelper.isBlank(contextHome) && contextHome.startsWith("/") && !contextHome.endsWith("/");
 		assert !StringHelper.isBlank(contextQuery) && contextQuery.startsWith("?");
+<<<<<<< Updated upstream
 		
 		this.protocol = protocol;
 		this.host = host;
 		this.port = port;
 		this.contextPath = contextPath;
 		this.contextQuery = contextQuery;
+=======
+>>>>>>> Stashed changes
 
 		this.baseUrl = String.format("%s://%s:%s%s", protocol, host, port, contextPath);
 		this.homeUrl = String.format("%s%s%s", this.baseUrl, contextHome, contextQuery);
@@ -196,6 +199,7 @@ public abstract class AbstractTest {
 		assert !result.equals("/master/referrer") : "The '/master/referrer' redirector didn't work";
 
 		return result;
+<<<<<<< Updated upstream
 	}
 
 	protected String getSimplePath() {
@@ -221,6 +225,33 @@ public abstract class AbstractTest {
 		}
 	}
 
+=======
+	}
+
+	protected String getSimplePath() {
+		String result;
+		String currentUrl;
+
+		currentUrl = this.getCurrentUrl();
+		result = this.extractSimplePath(currentUrl);
+
+		return result;
+	}
+
+	protected void checkSimplePath(final String expectedPath) {
+		assert this.isSimplePath(expectedPath);
+
+		String currentUrl, currentPath;
+
+		if (!expectedPath.equals("#")) {
+			this.waitUntilComplete();
+			currentUrl = this.getCurrentUrl();
+			currentPath = this.extractSimplePath(currentUrl);
+			assert currentPath.equals(expectedPath) : String.format("The system doesn't navigate from '%s' to '%s'", currentPath, expectedPath);
+		}
+	}
+
+>>>>>>> Stashed changes
 	// Location methods -------------------------------------------------------
 
 	protected WebElement locateOne(final By locator) {
@@ -262,6 +293,7 @@ public abstract class AbstractTest {
 
 	protected void checkExists(final By locator) {
 		assert locator != null;
+<<<<<<< Updated upstream
 
 		assert this.exists(locator) : String.format("Element '%s' is expected", locator);
 	}
@@ -269,6 +301,15 @@ public abstract class AbstractTest {
 	protected void checkNotExists(final By locator) {
 		assert locator != null;
 
+=======
+
+		assert this.exists(locator) : String.format("Element '%s' is expected", locator);
+	}
+
+	protected void checkNotExists(final By locator) {
+		assert locator != null;
+
+>>>>>>> Stashed changes
 		assert !this.exists(locator) : String.format("Element '%s' is not expected", locator);
 	}
 
@@ -314,8 +355,13 @@ public abstract class AbstractTest {
 
 		this.navigate(() -> {
 			String url;
+<<<<<<< Updated upstream
 						
 			url = String.format("%s%s%s%s", this.baseUrl, path, this.contextQuery, query);
+=======
+
+			url = String.format("%s/%s?%s&%s", this.baseUrl, path, this.contextQuery, query);
+>>>>>>> Stashed changes
 			this.driver.get(url);
 			this.longSleep();
 		});
@@ -390,7 +436,12 @@ public abstract class AbstractTest {
 	protected boolean isSimpleQuery(final String query) {
 		boolean result;
 
+<<<<<<< Updated upstream
 		result = query == null || (!query.startsWith("?") && !query.startsWith("&"));
+=======
+		result = StringHelper.isBlank(query) || //
+			(!query.startsWith("?") && !query.startsWith("&"));
+>>>>>>> Stashed changes
 
 		return result;
 	}
