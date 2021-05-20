@@ -36,6 +36,8 @@ public class UpdateSpamListTest extends AbstractTest {
 		this.UpdateSpamWordList(threshold, lista);
 	super.click(By.linkText("Administrator"));
 	super.click(By.linkText("Spam filter"));
+
+	
 		assert super.exists(By.id("lista"));
 	}
 
