@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.management.relation.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,7 @@ public class AdministratorSpamUpdateService implements AbstractUpdateService<Adm
 	public boolean authorise(final Request<Spam> request) {
 		assert request != null;
 		boolean result= false;
-		if(request.getPrincipal().hasRole("Administrator")) {
+		if(request.getPrincipal().getActiveRole().equals(Administrator.class)) {
 			result= true;
 			
 		}
