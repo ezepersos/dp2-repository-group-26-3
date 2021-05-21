@@ -6,9 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-import acme.framework.testing.AbstractTest;
-
-public class UpdateSpamListTest extends AbstractTest {
+public class UpdateSpamListTest extends AcmeTest {
 
 	// Internal state ---------------------------------------------------------
 
@@ -22,9 +20,9 @@ public class UpdateSpamListTest extends AbstractTest {
 		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
 		super.setAutoPausing(true);
 
-		this.signIn("administrator", "administrator");
-		super.click(By.linkText("Administrator"));
-		super.submit(By.linkText("Populate DB (initial)"));
+		this.signIn("administrator", "administrator");	
+		super.clickOnMenu("Administrator","Populate DB (initial)");
+	
 	}
 
 	// Test cases -------------------------------------------------------------
@@ -33,36 +31,48 @@ public class UpdateSpamListTest extends AbstractTest {
 	@CsvFileSource(resources = "/UpdateSpamList/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positiveUpdate(final String threshold, final String lista) {
+		this.signIn("administrator", "administrator");
+
 		this.UpdateSpamWordList(threshold, lista);
-	super.click(By.linkText("Administrator"));
-	super.click(By.linkText("Spam filter"));
+		super.clickOnMenu("Administrator", "Spam filter");
+
+
+	
 		assert super.exists(By.id("lista"));
 	}
-
+	@ParameterizedTest
+    @CsvFileSource(resources = "/UpdateSpamList/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+    @Order(10)
+    public void negativeUpdate(final String threshold, final String lista) {
+		this.signIn("administrator", "administrator");
+		this.UpdateSpamWordList(threshold, lista);
+		super.checkErrorsExist();
+    }
 	// Ancillary methods ------------------------------------------------------
 
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
-		super.click(By.linkText("Sign in"));
+		super.clickAndGo(By.linkText("Sign in"));
 		super.fill(By.id("username"), username);
 		super.fill(By.id("password"), password);
-		super.click(By.id("remember$proxy"));
-		super.submit(By.className("btn-primary"));
+		super.clickAndGo(By.id("remember$proxy"));
+		super.clickOnSubmitButton("Sign in");
 	}
 
 	protected void signOut() {
 		super.navigateHome();
-		super.submit(By.linkText("Sign out"));
+		super.clickOnSubmitButton("Sign out");
 	}
 	protected void UpdateSpamWordList(final String threshold, final String lista) {
+
 		super.navigateHome();
-		super.click(By.linkText("Administrator"));
-		super.click(By.linkText("Spam filter"));
+		super.clickOnMenu("Administrator", "Spam filter");
 		super.fill(By.id("threshold"), threshold);
 		super.fill(By.id("lista"), lista);
 	
-		super.submit(By.className("btn-primary"));
+		super.clickOnSubmitButton("update");
 	}
+	
 	
 
 	
