@@ -25,7 +25,7 @@ public class AnonymousTaskShowService implements AbstractShowService<Anonymous, 
 		return true;
 	}
 
-	// AbstractShowService<Anonymous, Job> interface --------------------------
+	// AbstractShowService<Anonymous, Task> interface --------------------------
 
 	@Override
 	public void unbind(final Request<Task> request, final Task entity, final Model model) {

@@ -12,13 +12,8 @@
 
 package acme.framework.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
-import acme.entities.tasks.Task;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,8 +28,7 @@ public class Manager extends UserRole {
 
 	// Attributes -------------------------------------------------------------
 
-	@OneToMany(cascade = CascadeType.ALL)
-	protected List<Task> tasks;
+
 	// Derived attributes -----------------------------------------------------
 
 	// Relationships ----------------------------------------------------------

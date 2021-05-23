@@ -14,11 +14,15 @@ package acme.features.manager.task;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.tasks.Task;
+import acme.entities.words.Word;
+import acme.features.administrator.spam.AdministratorSpamShowService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -32,6 +36,8 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 
 	@Autowired
 	protected ManagerTaskRepository repository;
+	@Autowired
+	protected AdministratorSpamShowService spamService;
 
 	// AbstractCreateService<Administrator, Task> interface --------------
 
@@ -85,7 +91,18 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
+		final String title = entity.getTitle().trim().replace(" ", "").toLowerCase();
+		final String desc = entity.getDescription().trim().replace(" ", "").toLowerCase();
+ 		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
+ 		final String allWords = title+desc;
+ 		boolean containsSpam = false;
+			for(final Word word: listSpam) {
+				containsSpam = StringUtils.contains(allWords, word.getSpamWord());
+				if(containsSpam) {
+					break;
+				}
+			}
+			errors.state(request,!containsSpam, "spam", "acme.validation.spam.task");
 	}
 
 	@Override
@@ -94,12 +111,10 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert entity != null;
 
 		final Integer managerId= request.getPrincipal().getActiveRoleId();
-		final Manager m=this.repository.findManagerById(managerId);
-		m.getTasks().add(entity);
+		entity.setManagerId(this.repository.findManagerById(managerId));
 		
 		
 		this.repository.save(entity);
-		this.repository.save(m);
 	}
 
 }

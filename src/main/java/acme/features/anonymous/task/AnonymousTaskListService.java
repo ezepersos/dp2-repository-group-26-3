@@ -33,7 +33,7 @@ public class AnonymousTaskListService implements AbstractListService<Anonymous, 
 	protected AnonymousTaskRepository repository;
 
 
-	// AbstractListService<Administrator, Task> interface --------------
+	// AbstractListService<Anonymous, Task> interface --------------
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
