@@ -335,9 +335,9 @@ Shout
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>456</x>
+      <x>480</x>
       <y>354</y>
-      <w>126</w>
+      <w>90</w>
       <h>42</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
@@ -364,13 +364,13 @@ has v</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
+      <x>516</x>
       <y>306</y>
       <w>18</w>
       <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
