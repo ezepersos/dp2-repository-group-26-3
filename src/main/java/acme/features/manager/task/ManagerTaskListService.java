@@ -45,7 +45,7 @@ public class ManagerTaskListService implements AbstractListService<Manager, Task
 		boolean res = manager!=null;
 
 		for (final Task t: collection) {
-			if (t.getManagerId().getId()!=manager.getId()&&res==true)
+			if (t.getManagerId().getId()!=manager.getId()&&res)
 				res=false;
 			}
 
