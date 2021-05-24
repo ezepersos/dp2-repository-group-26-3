@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 
 import acme.testing.AcmeTest;
 
-public class UpdateTaskManager extends AcmeTest {
+public class DeleteTaskManagerTest extends AcmeTest {
 
 	// Internal state ---------------------------------------------------------
 
@@ -30,34 +30,24 @@ public class UpdateTaskManager extends AcmeTest {
 	// Test cases -------------------------------------------------------------
 
 	@ParameterizedTest
-	@CsvFileSource(resources = "/UpdateTaskManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/DeleteTaskManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveUpdateTaskManager(final String title, final String executionPeriodInit, final String executionPeriodEnd,
+	public void positiveDeleteTaskManager(final String title, final String executionPeriodInit, final String executionPeriodEnd,
 		final String description, final String optionalLink, final int iter) {
 		this.signIn("manager", "manager");
 		super.navigateHome();
 		super.clickOnMenu("Manager", "My tasks");
 		super.clickOnListingRecord(iter);
-		super.fill(By.id("title"), title);
+		super.clickOnSubmitButton("Delete");
 
-		super.clickOnSubmitButton("Update");
-		super.checkColumnHasValue(iter, 0, title);
-		super.checkColumnHasValue(iter, 1, executionPeriodInit);
-		super.checkColumnHasValue(iter, 2, executionPeriodEnd);
-		super.checkColumnHasValue(iter, 3, description);
 	}
 	@ParameterizedTest
-    @CsvFileSource(resources = "/UpdateTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/DeleteTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
     @Order(10)
     public void negativeUpdate(final String title, final String executionPeriodInit, final String executionPeriodEnd,
 		final String description, final String optionalLink, final int iter) {
-		this.signIn("manager", "manager");
 		super.navigateHome();
-		super.clickOnMenu("Manager", "My tasks");
-		super.clickOnListingRecord(iter);
-		super.fill(By.id("executionPeriodInit"), executionPeriodInit);
-
-		super.clickOnSubmitButton("Update");
+		super.navigate("/Acme-Planner/manager/task/list", "");
 		super.checkErrorsExist();
     }
 	// Ancillary methods ------------------------------------------------------
@@ -72,7 +62,6 @@ public class UpdateTaskManager extends AcmeTest {
 	}
 
 
-	
 
 	
 	
