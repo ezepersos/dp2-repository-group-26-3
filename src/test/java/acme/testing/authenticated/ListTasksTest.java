@@ -1,4 +1,4 @@
-package acme.testing.manager;
+package acme.testing.authenticated;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
@@ -8,7 +8,11 @@ import org.openqa.selenium.By;
 
 import acme.testing.AcmeTest;
 
-public class UpdateTaskManager extends AcmeTest {
+public class ListTasksTest extends AcmeTest {
+
+
+
+
 
 	// Internal state ---------------------------------------------------------
 
@@ -21,47 +25,36 @@ public class UpdateTaskManager extends AcmeTest {
 
 		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
 		super.setAutoPausing(true);
-
-		this.signIn("administrator", "administrator");	
-		super.clickOnMenu("Administrator","Populate DB (samples)");
-	
+		this.signIn("administrator", "administrator");
+		super.clickOnMenu("Administrator", "Populate DB (samples)");
+		this.signOut();
+		this.signUp("usser", "password", "name", "sur", "name@mail.com");
+		
+		
 	}
-
 	// Test cases -------------------------------------------------------------
 
 	@ParameterizedTest
-	@CsvFileSource(resources = "/UpdateTaskManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/listTasksAuthenticated/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveUpdateTaskManager(final String title, final String executionPeriodInit, final String executionPeriodEnd,
+	public void positiveListTasks(final String title, final String executionPeriodInit, final String executionPeriodEnd,
 		final String description, final String optionalLink, final int iter) {
-		this.signIn("manager", "manager");
-		super.navigateHome();
-		super.clickOnMenu("Manager", "My tasks");
-		super.clickOnListingRecord(iter);
-		super.fill(By.id("title"), title);
-
-		super.clickOnSubmitButton("Update");
+		this.signIn("usser", "password");
+		super.clickAndGo(By.linkText("Account"));
+		super.clickAndGo(By.linkText("Task list"));
 		super.checkColumnHasValue(iter, 0, title);
 		super.checkColumnHasValue(iter, 1, executionPeriodInit);
 		super.checkColumnHasValue(iter, 2, executionPeriodEnd);
 		super.checkColumnHasValue(iter, 3, description);
+		
+		
 	}
-	@ParameterizedTest
-    @CsvFileSource(resources = "/UpdateTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-    @Order(10)
-    public void negativeUpdate(final String title, final String executionPeriodInit, final String executionPeriodEnd,
-		final String description, final String optionalLink, final int iter) {
-		this.signIn("manager", "manager");
-		super.navigateHome();
-		super.clickOnMenu("Manager", "My tasks");
-		super.clickOnListingRecord(iter);
-		super.fill(By.id("executionPeriodInit"), executionPeriodInit);
+	
+	
 
-		super.clickOnSubmitButton("Update");
-		super.checkErrorsExist();
-    }
 	// Ancillary methods ------------------------------------------------------
 
+	
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -69,11 +62,26 @@ public class UpdateTaskManager extends AcmeTest {
 		super.fill(By.id("password"), password);
 		super.clickAndGo(By.id("remember$proxy"));
 		super.clickOnSubmitButton("Sign in");
+		
 	}
 
+	protected void signOut() {
+		super.navigateHome();
+		super.clickAndGo(By.linkText("Sign out"));
+	}
 
-	
+	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
+		super.navigateHome();
+		super.clickAndGo(By.linkText("Sign up"));
+		super.fill(By.id("username"), username);
+		super.fill(By.id("password"), password);
+		super.fill(By.id("confirmation"), password);
+		super.fill(By.id("identity.name"), name);
+		super.fill(By.id("identity.surname"), surname);
+		super.fill(By.id("identity.email"), email);
+		super.clickAndGo(By.id("accept$proxy"));
+		super.clickOnSubmitButton("Sign up");
+	}
 
-	
-	
 }
+
