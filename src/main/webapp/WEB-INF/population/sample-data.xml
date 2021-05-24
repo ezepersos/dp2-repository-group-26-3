@@ -69,6 +69,16 @@
 		<property name="optionalLink" value="https://www.google.com" />
 		<property name="managerId" ref="managerManager"/>
 	</bean> 
+	
+	<bean id="task04" class="acme.entities.tasks.Task">
+		<property name="title" value="Title of task 04" />
+		<property name="executionPeriodInit" value="2021/05/24 14:17" />
+		<property name="executionPeriodEnd" value="2021/05/24 14:18" />
+		<property name="isPublic" value="true" />
+		<property name="description" value="Description of task 04" />
+		<property name="optionalLink" value="https://www.google.com" />
+		<property name="managerId" ref="managerManager"/>
+	</bean> 
 
 
 	
