@@ -52,25 +52,25 @@ public class CreateTasksManagerTest extends AcmeTest {
 		
 	}
 	
-//	@ParameterizedTest
-//	@CsvFileSource(resources = "/createTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-//	@Order(10)
-//	public void negativeCreateTasks(final String title, final String executionPeriodInit, final String executionPeriodEnd,
-//		final String description, final String optionalLink, final int iter) {
-//		this.signIn("manager", "manager");
-//		super.clickAndGo(By.linkText("Manager"));
-//		super.clickAndGo(By.linkText("Create Task"));
-//		super.fill(By.id("title"), title);
-//		super.fill(By.id("executionPeriodInit"), executionPeriodInit);
-//		super.fill(By.id("executionPeriodEnd"), executionPeriodEnd);
-//		super.fill(By.id("description"), description);
-//		super.fill(By.id("optionalLink"), optionalLink);
-//		super.clickOnSubmitButton("Create task");
-//		super.checkErrorsExist();
-//	
-//		
-//		
-//	}
+	@ParameterizedTest
+	@CsvFileSource(resources = "/createTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void negativeCreateTasks(final String title, final String executionPeriodInit, final String executionPeriodEnd,
+		final String description, final String optionalLink, final int iter) {
+		this.signIn("manager", "manager");
+		super.clickAndGo(By.linkText("Manager"));
+		super.clickAndGo(By.linkText("Create Task"));
+		super.fill(By.id("title"), title);
+		super.fill(By.id("executionPeriodInit"), executionPeriodInit);
+		super.fill(By.id("executionPeriodEnd"), executionPeriodEnd);
+		super.fill(By.id("description"), description);
+		super.fill(By.id("optionalLink"), optionalLink);
+		super.clickOnSubmitButton("Create task");
+		super.checkErrorsExist();
+	
+		
+		
+	}
 		
 		
 		
