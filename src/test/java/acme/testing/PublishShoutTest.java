@@ -25,7 +25,13 @@ public class PublishShoutTest extends AcmeTest {
 		
 	}
 	// Test cases -------------------------------------------------------------
-
+	/**
+	 * 
+	 * Caso positivo:
+	 *
+	 * Se crea un shout haciendo que sus atributos cumplan las restricciones y validadores pertinentes
+	 * Se comprueba la correcta creación del shout.
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/publishShout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -39,6 +45,13 @@ public class PublishShoutTest extends AcmeTest {
 		
 	}
 	
+	/**
+	 * 
+	 * Caso negativo:
+	 *
+	 * Se crea un shout haciendo uno de sus atributos incumpla la restricción de NotNull.
+	 * Se comprueba que no se crea dicho shout y aparece el error esperado.
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/publishShout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)

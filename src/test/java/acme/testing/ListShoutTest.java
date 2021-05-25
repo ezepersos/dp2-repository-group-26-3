@@ -25,7 +25,13 @@ public class ListShoutTest extends AcmeTest {
 		
 	}
 	// Test cases -------------------------------------------------------------
-
+	/**
+	 * 
+	 * Caso positivo:
+	 *
+	 * Se comprueba que la lista donde se muestran los shouts se despliega acorde a lo esperado.
+	 */
+	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/listShout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
