@@ -28,7 +28,13 @@ public class SpamListUpdateTest extends AcmeTest {
 	}
 
 	// Test cases -------------------------------------------------------------
-
+	/**
+	 * 
+	 * Caso positivo:
+	 * Al loguearnos como administrador, accedemos a la pagina de "spam filter"
+	 * y debe realizar una actualización de la lista de estas palabras en 
+	 * la base de datos
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/UpdateSpamList/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -42,6 +48,13 @@ public class SpamListUpdateTest extends AcmeTest {
 	
 		assert super.exists(By.id("lista"));
 	}
+	/**
+	 * 
+	 * Caso negativos:
+	 * Al loguearnos como administrador, accedemos a la pagina de "spam filter"
+	 * e intentamos actualizar la base de datos con un threshold que no 
+	 * pase las restricciones, deberia saltarnos un errror
+	 */
 	@ParameterizedTest
     @CsvFileSource(resources = "/UpdateSpamList/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
     @Order(10)
