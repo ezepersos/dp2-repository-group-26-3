@@ -32,6 +32,13 @@ public class ListTasksTest extends AcmeTest {
 	}
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que un usuario anonimo accede a la lista de tareas y se muestran
+	 * las tareas que puede ver este tipo de usuario.
+	*/
+
 	@ParameterizedTest
 	@CsvFileSource(resources = "/listTasksAnonymous/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)

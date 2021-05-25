@@ -32,6 +32,14 @@ public class ShowTasksTest extends AcmeTest {
 	}
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que un usuario anonimo accede a los detalles de una tarea y se muestran
+	 * los detalles de la misma correspondientes a lo que debería mostrar
+	 * según la base de datos.
+	*/
+
 	@ParameterizedTest
 	@CsvFileSource(resources = "/showTasksAnonymous/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)

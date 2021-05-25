@@ -29,6 +29,13 @@ public class DeleteTaskManagerTest extends AcmeTest {
 
 	// Test cases -------------------------------------------------------------
 
+
+		/**
+	 * 
+	 * Caso positivo:
+	 * En el que se elimina una tarea con exito.
+	*/
+
 	@ParameterizedTest
 	@CsvFileSource(resources = "/DeleteTaskManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -41,6 +48,13 @@ public class DeleteTaskManagerTest extends AcmeTest {
 		super.clickOnSubmitButton("Delete");
 
 	}
+
+		/**
+	 * 
+	 * Caso negativo:
+	 * En el que un usuario que no es manager intenta ver las tareas para ese manager
+	*/
+
 	@ParameterizedTest
     @CsvFileSource(resources = "/DeleteTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
     @Order(10)

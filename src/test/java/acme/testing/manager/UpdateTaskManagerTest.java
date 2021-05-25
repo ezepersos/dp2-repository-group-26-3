@@ -29,6 +29,14 @@ public class UpdateTaskManagerTest extends AcmeTest {
 
 	// Test cases -------------------------------------------------------------
 
+
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que un manager actualiza los datos de una tarea, se comprueba que se actualice
+	 * de forma correcta según los datos esperados.
+	*/
+
 	@ParameterizedTest
 	@CsvFileSource(resources = "/UpdateTaskManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -46,6 +54,16 @@ public class UpdateTaskManagerTest extends AcmeTest {
 		super.checkColumnHasValue(iter, 2, executionPeriodEnd);
 		super.checkColumnHasValue(iter, 3, description);
 	}
+
+	/**
+	 * 
+	 * Caso negativo:
+	 * En el que un manager actualiza los datos de una tarea, se comprueba que se no se actualice
+	 * la tarea ya que se introducen palabras calificadas como spam, por lo cual se espera un error
+	 * al enviar los nuevos datos.
+	*/
+
+
 	@ParameterizedTest
     @CsvFileSource(resources = "/UpdateTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
     @Order(10)
