@@ -1,10 +1,12 @@
-package acme.testing;
+package acme.testing.anonymous;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
+
+import acme.testing.AcmeTest;
 
 public class ListShoutTest extends AcmeTest {
 
