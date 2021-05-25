@@ -32,6 +32,12 @@ public class CreateTasksManagerTest extends AcmeTest {
 	}
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que el manager puede crear una tarea nueva sin problemas.
+	 */
+	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/createTasksManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -51,6 +57,13 @@ public class CreateTasksManagerTest extends AcmeTest {
 		
 		
 	}
+	
+	/**
+	 * 
+	 * Caso negativo:
+	 * En el que el manager no puede crear una tarea ya finalizada y
+	 * le salta la validación del service.
+	 */
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/createTasksManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
