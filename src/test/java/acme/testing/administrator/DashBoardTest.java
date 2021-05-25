@@ -37,6 +37,7 @@ public class DashBoardTest extends AcmeTest {
 	 * 
 	 * Caso positivo:
 	 * En el que el dashboard está vacío al no haber tasks.
+	 * Se comprueban las funcionalidades del service del dashboard en caso de que esté vacío
 	 */
 
 	@Test
@@ -63,7 +64,9 @@ public class DashBoardTest extends AcmeTest {
 	/**
 	 * 
 	 * Caso positivo:
-	 * En el que el dashboard está vacío al no haber tasks.
+	 * En el que el dashboard está completo y con datos al contener tareas
+	 * Se comprueban que las funcionalidades que hay en el service devuelvan el 
+	 * número correcto.
 	 */
 
 	@ParameterizedTest
@@ -95,7 +98,7 @@ public class DashBoardTest extends AcmeTest {
 	 * 
 	 * Caso Negativo:
 	 * 
-	 * Si es usuario manager no debería ver el dashboard
+	 * El usuario manager no debería ver el dashboard
 	 * 
 	 */
 
@@ -113,7 +116,7 @@ public class DashBoardTest extends AcmeTest {
 	 * 
 	 * Caso Negativo:
 	 * 
-	 * Si es usuario anonimo no debería ver el dashboard
+	 * El usuario anonimo no debería ver el dashboard
 	 * 
 	 */
 
@@ -121,6 +124,25 @@ public class DashBoardTest extends AcmeTest {
 	@Order(30)
 	protected void assertDashboardForAnonymousIsForbidden() {
 		super.navigateHome();
+		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
+		super.checkErrorsExist();
+
+	}
+
+		/**
+	 * 
+	 * Caso Negativo:
+	 * 
+	 * El usuario autenticado no debería ver el dashboard
+	 * 
+	 */
+
+	@Test
+	@Order(30)
+	protected void assertDashboardForAuthenticatedIsForbidden() {
+		super.navigateHome();
+		this.signUp("username", "password", "name", "surname", "email@example.com");
+		this.signIn("username", "password");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
 		super.checkErrorsExist();
 
@@ -140,6 +162,19 @@ public class DashBoardTest extends AcmeTest {
 	protected void signOut() {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign out"));
+	}
+
+	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
+		super.navigateHome();
+		super.clickAndGo(By.linkText("Sign up"));
+		super.fill(By.id("username"), username);
+		super.fill(By.id("password"), password);
+		super.fill(By.id("confirmation"), password);
+		super.fill(By.id("identity.name"), name);
+		super.fill(By.id("identity.surname"), surname);
+		super.fill(By.id("identity.email"), email);
+		super.clickAndGo(By.id("accept$proxy"));
+		super.clickOnSubmitButton("Sign up");
 	}
 
 }
