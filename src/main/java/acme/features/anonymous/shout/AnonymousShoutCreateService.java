@@ -95,7 +95,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
  		final String allWords = autorWords+infoWords+textWords;
  		boolean containsSpam = false;
 			for(final Word word: listSpam) {
-				containsSpam = StringUtils.contains(allWords, word.getWord());
+				containsSpam = StringUtils.contains(allWords, word.getSpamWord());
 				if(containsSpam) {
 					break;
 				}

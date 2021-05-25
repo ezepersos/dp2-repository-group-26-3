@@ -28,7 +28,7 @@ public class AdministratorSpamUpdateService implements AbstractUpdateService<Adm
 	public boolean authorise(final Request<Spam> request) {
 		assert request != null;
 		boolean result= false;
-		if(request.getPrincipal().hasRole("Administrator")) {
+		if(request.getPrincipal().getActiveRole().equals(Administrator.class)) {
 			result= true;
 			
 		}
@@ -80,10 +80,9 @@ public class AdministratorSpamUpdateService implements AbstractUpdateService<Adm
 	public void update(final Request<Spam> request,final Spam entity) {
 		assert request != null;
 		assert entity != null;
-		System.out.println(request.getModel().getAttribute("lista"));
 		int i = 0;
 		final String[] s = request.getModel().getAttribute("lista").toString().trim().split(",");
-		List<Word> l = new ArrayList<Word>();
+		final List<Word> l = new ArrayList<Word>();
 		while(i< s.length) {
 			l.add(new Word(s[i].trim()));
 			i++;
