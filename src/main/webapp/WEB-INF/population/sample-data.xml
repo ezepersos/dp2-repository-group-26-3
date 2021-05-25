@@ -52,7 +52,7 @@
 
  	<bean id="task02" class="acme.entities.tasks.Task">
 		<property name="title" value="Title of task 02" />
-		<property name="executionPeriodInit" value="2023/05/20 20:00" />
+		<property name="executionPeriodInit" value="2023/05/21 19:39" />
 		<property name="executionPeriodEnd" value="2023/05/21 19:39" />
 		<property name="isPublic" value="true" />
 		<property name="description" value="Description of task 02" />
@@ -66,6 +66,16 @@
 		<property name="executionPeriodEnd" value="2023/05/11 23:30" />
 		<property name="isPublic" value="true" />
 		<property name="description" value="Description of task 03" />
+		<property name="optionalLink" value="https://www.google.com" />
+		<property name="managerId" ref="managerManager"/>
+	</bean> 
+	
+	<bean id="task04" class="acme.entities.tasks.Task">
+		<property name="title" value="Title of task 04" />
+		<property name="executionPeriodInit" value="2021/05/24 14:17" />
+		<property name="executionPeriodEnd" value="2021/05/24 14:18" />
+		<property name="isPublic" value="true" />
+		<property name="description" value="Description of task 04" />
 		<property name="optionalLink" value="https://www.google.com" />
 		<property name="managerId" ref="managerManager"/>
 	</bean> 

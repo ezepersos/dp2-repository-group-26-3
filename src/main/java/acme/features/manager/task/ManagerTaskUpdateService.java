@@ -1,5 +1,6 @@
 package acme.features.manager.task;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -95,6 +96,13 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 				}
 			}
 			errors.state(request,!containsSpam, "spam", "acme.validation.spam.task");
+			final Date start = request.getModel().getDate("executionPeriodEnd");
+			final Date end = request.getModel().getDate("executionPeriodInit");
+			final Date now = new Date(System.currentTimeMillis());
+			if(start.before(now)||end.before(now)) {
+				errors.state(request, !start.before(now), "executionPeriodEnd", "acme.validation.task.date");
+				errors.state(request, !end.before(now), "executionPeriodInit", "acme.validation.task.date");
+			}
 	}
 	@Override
 	public void update(final Request<Task> request, final Task entity) {

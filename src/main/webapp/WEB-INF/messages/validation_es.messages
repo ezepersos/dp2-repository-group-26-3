@@ -34,6 +34,7 @@ org.hibernate.validator.constraints.URL.message = No es una URL correcta
 
 acme.validation.spam = El shout no puede contener palabras spam
 acme.validation.spam.task = La task no puede contener palabras spam
+acme.validation.task.date = La task debe ser en el futuro
 acme.validation.decimal-max = Debe ser menor o igual que {0}
 acme.validation.decimal-min = Debe ser mayor o igual que {0}
 acme.validation.digits = Debe tener {0} dígitos y {1} decimales
