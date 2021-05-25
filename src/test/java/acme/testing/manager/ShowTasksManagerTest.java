@@ -32,6 +32,12 @@ public class ShowTasksManagerTest extends AcmeTest {
 	}
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que el manager puede ver los detalles de las tasks que tiene en su lista de tareas.
+	 */
+	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/showTasksManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)

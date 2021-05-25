@@ -33,6 +33,13 @@ public class ShowTasksTest extends AcmeTest {
 	}
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que el usuario autenticado puede ver los detalles de las tasks de la lista de tareas
+	 * públicas finalizadas.
+	 */
+	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/showTasksAuthenticated/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)

@@ -33,6 +33,12 @@ public class ListTasksManagerTest extends AcmeTest {
 	}
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que el manager accede a la lista de sus tasks.
+	 */
+	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/listTasksManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
