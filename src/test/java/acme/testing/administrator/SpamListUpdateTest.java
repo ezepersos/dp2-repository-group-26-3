@@ -66,7 +66,8 @@ public class SpamListUpdateTest extends AcmePlannerTest {
 	@Override
 	protected void signOut() {
 		super.navigateHome();
-		super.clickOnSubmitButton("Sign out");
+		super.clickOnLink("Sign out");;
+	//	super.clickOnSubmitButton("sign-out");
 	}
 	protected void UpdateSpamWordList(final String threshold, final String lista) {
 
