@@ -1,61 +1,53 @@
-package acme.testing;
+package acme.testing.manager;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-public class PublishShoutTest extends AcmeTest {
+import acme.testing.AcmePlannerTest;
+
+public class ShowTasksManagerTest extends AcmePlannerTest {
+
+
+
+
 
 	// Internal state ---------------------------------------------------------
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
 
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-		this.signIn("administrator", "administrator");
-		super.clickOnMenu("Administrator", "Populate DB (initial)");
-		this.signOut();
-		
-	}
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que el manager puede ver los detalles de las tasks que tiene en su lista de tareas.
+	 */
+	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/publishShout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/showTasksManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positivePublishShout(final String author, final String text, final String info) {
-		super.navigateHome();
-		super.clickOnMenu("Anonymous", "Shout!");
-		super.fill(By.id("author"), author);
-		super.fill(By.id("text"), text);
-		super.fill(By.id("info"), info);
-		super.clickOnSubmitButton("Shout!");
+	public void positiveShowTask(final String title, final String executionPeriodInit, final String executionPeriodEnd,
+		final String description, final String optionalLink, final int iter) {
+		this.signIn("manager", "manager");
+		super.clickAndGo(By.linkText("Manager"));
+		super.clickAndGo(By.linkText("My tasks"));
+		super.clickOnListingRecord(iter);
+		super.checkInputBoxHasValue("title", title);
+		super.checkInputBoxHasValue("executionPeriodInit", executionPeriodInit);
+		super.checkInputBoxHasValue("executionPeriodEnd", executionPeriodEnd);
+		super.checkInputBoxHasValue("description", description);
+		super.checkInputBoxHasValue("optionalLink", optionalLink);
 		
 	}
 	
-	@ParameterizedTest
-	@CsvFileSource(resources = "/publishShout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(10)
-	public void negativePublishShout(final String author, final String text, final String info) {
-		super.navigateHome();
-		super.clickOnMenu("Anonymous", "Shout!");
-		super.fill(By.id("author"), author);
-		super.fill(By.id("text"), text);
-		super.fill(By.id("info"), info);
-		super.clickOnSubmitButton("Shout!");
-		super.checkErrorsExist();
-		
-	}
 
 	// Ancillary methods ------------------------------------------------------
 
 	
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -66,6 +58,7 @@ public class PublishShoutTest extends AcmeTest {
 		
 	}
 
+	@Override
 	protected void signOut() {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign out"));
@@ -73,7 +66,7 @@ public class PublishShoutTest extends AcmeTest {
 
 	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
 		super.navigateHome();
-		super.clickAndGo(By.linkText("Sign in"));
+		super.clickAndGo(By.linkText("Sign up"));
 		super.fill(By.id("username"), username);
 		super.fill(By.id("password"), password);
 		super.fill(By.id("confirmation"), password);
@@ -85,4 +78,3 @@ public class PublishShoutTest extends AcmeTest {
 	}
 
 }
-

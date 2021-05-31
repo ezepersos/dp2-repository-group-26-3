@@ -1,48 +1,65 @@
-package acme.testing;
+package acme.testing.anonymous;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-public class ListShoutTest extends AcmeTest {
+import acme.testing.AcmePlannerTest;
+
+public class PublishShoutTest extends AcmePlannerTest {
 
 	// Internal state ---------------------------------------------------------
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
-
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-		this.signIn("administrator", "administrator");
-		super.clickOnMenu("Administrator", "Populate DB (samples)");
-		this.signOut();
-		
-	}
+	
 	// Test cases -------------------------------------------------------------
-
+	/**
+	 * 
+	 * Caso positivo:
+	 *
+	 * Se crea un shout haciendo que sus atributos cumplan las restricciones y validadores pertinentes
+	 * Se comprueba la correcta creación del shout.
+	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/listShout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/publishShout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveListShout(final int recordIndex, final String moment, final String author, final String text) {
+	public void positivePublishShout(final String author, final String text, final String info) {
 		super.navigateHome();
-		super.clickOnMenu("Anonymous", "List shouts");
-		super.checkColumnHasValue(recordIndex, 0, moment);
-		super.checkColumnHasValue(recordIndex, 1, author);
-		super.checkColumnHasValue(recordIndex, 2, text);
-		super.navigateHome();
+		super.clickOnMenu("Anonymous", "Shout!");
+		super.fill(By.id("author"), author);
+		super.fill(By.id("text"), text);
+		super.fill(By.id("info"), info);
+		super.clickOnSubmitButton("Shout!");
 		
 	}
 	
+	/**
+	 * 
+	 * Caso negativo:
+	 *
+	 * Se crea un shout haciendo uno de sus atributos incumpla la restricción de NotNull.
+	 * Se comprueba que no se crea dicho shout y aparece el error esperado.
+	 */
+	@ParameterizedTest
+	@CsvFileSource(resources = "/publishShout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void negativePublishShout(final String author, final String text, final String info) {
+		super.navigateHome();
+		super.clickOnMenu("Anonymous", "Shout!");
+		super.fill(By.id("author"), author);
+		super.fill(By.id("text"), text);
+		super.fill(By.id("info"), info);
+		super.clickOnSubmitButton("Shout!");
+		super.checkErrorsExist();
+		
+	}
 
 	// Ancillary methods ------------------------------------------------------
 
 	
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -53,6 +70,7 @@ public class ListShoutTest extends AcmeTest {
 		
 	}
 
+	@Override
 	protected void signOut() {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign out"));

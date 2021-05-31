@@ -1,4 +1,4 @@
-package acme.testing.authenticated;
+package acme.testing.manager;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 
 import acme.testing.AcmePlannerTest;
 
-public class ListTasksTest extends AcmePlannerTest {
+public class ListTasksManagerTest extends AcmePlannerTest {
 
 
 
@@ -17,23 +17,22 @@ public class ListTasksTest extends AcmePlannerTest {
 
 	// Lifecycle management ---------------------------------------------------
 
-	
 	// Test cases -------------------------------------------------------------
 
 	/**
 	 * 
 	 * Caso positivo:
-	 * En el que el el usuario autenticado puede ver la lista de las tasks públicas finalizadas.
+	 * En el que el manager accede a la lista de sus tasks.
 	 */
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/listTasksAuthenticated/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/listTasksManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positiveListTasks(final String title, final String executionPeriodInit, final String executionPeriodEnd,
 		final String description, final String optionalLink, final int iter) {
-		this.signIn("usser", "password");
-		super.clickAndGo(By.linkText("Account"));
-		super.clickAndGo(By.linkText("Task list"));
+		this.signIn("manager", "manager");
+		super.clickAndGo(By.linkText("Manager"));
+		super.clickAndGo(By.linkText("My tasks"));
 		super.checkColumnHasValue(iter, 0, title);
 		super.checkColumnHasValue(iter, 1, executionPeriodInit);
 		super.checkColumnHasValue(iter, 2, executionPeriodEnd);

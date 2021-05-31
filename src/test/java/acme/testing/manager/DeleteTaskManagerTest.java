@@ -1,33 +1,26 @@
 package acme.testing.manager;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-import acme.testing.AcmeTest;
+import acme.testing.AcmePlannerTest;
 
-public class DeleteTaskManagerTest extends AcmeTest {
+public class DeleteTaskManagerTest extends AcmePlannerTest {
 
 	// Internal state ---------------------------------------------------------
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
-
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-
-		this.signIn("administrator", "administrator");	
-		super.clickOnMenu("Administrator","Populate DB (samples)");
-	
-	}
-
 	// Test cases -------------------------------------------------------------
+
+
+		/**
+	 * 
+	 * Caso positivo:
+	 * En el que se elimina una tarea con exito.
+	*/
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/DeleteTaskManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -41,6 +34,13 @@ public class DeleteTaskManagerTest extends AcmeTest {
 		super.clickOnSubmitButton("Delete");
 
 	}
+
+		/**
+	 * 
+	 * Caso negativo:
+	 * En el que un usuario que no es manager intenta ver las tareas para ese manager
+	*/
+
 	@ParameterizedTest
     @CsvFileSource(resources = "/DeleteTaskManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
     @Order(10)
@@ -52,6 +52,7 @@ public class DeleteTaskManagerTest extends AcmeTest {
     }
 	// Ancillary methods ------------------------------------------------------
 
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));

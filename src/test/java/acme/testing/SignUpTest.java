@@ -12,31 +12,18 @@
 
 package acme.testing;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-public class SignUpTest extends AcmeTest{
+public class SignUpTest extends AcmePlannerTest{
 
 	// Internal state ---------------------------------------------------------
 
 		// Lifecycle management ---------------------------------------------------
 
-		@Override
-		@BeforeAll
-		public void beforeAll() {
-			super.beforeAll();
-
-			super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-			super.setAutoPausing(true);
-
-			this.signIn("administrator", "administrator");
-			super.clickAndGo(By.linkText("Administrator"));
-			super.clickAndGo(By.linkText("Populate DB (initial)"));
-			this.signOut();
-		}
+		
 
 		// Test cases -------------------------------------------------------------
 
@@ -52,6 +39,7 @@ public class SignUpTest extends AcmeTest{
 
 		// Ancillary methods ------------------------------------------------------
 
+		@Override
 		protected void signIn(final String username, final String password) {
 			super.navigateHome();
 			super.clickAndGo(By.linkText("Sign in"));
@@ -61,6 +49,7 @@ public class SignUpTest extends AcmeTest{
 			super.clickOnSubmitButton("Sign in");
 		}
 
+		@Override
 		protected void signOut() {
 			super.navigateHome();
 			super.clickAndGo(By.linkText("Sign out"));
