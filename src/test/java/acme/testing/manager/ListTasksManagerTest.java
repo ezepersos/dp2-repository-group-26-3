@@ -1,14 +1,13 @@
 package acme.testing.manager;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-import acme.testing.AcmeTest;
+import acme.testing.AcmePlannerTest;
 
-public class ListTasksManagerTest extends AcmeTest {
+public class ListTasksManagerTest extends AcmePlannerTest {
 
 
 
@@ -18,19 +17,6 @@ public class ListTasksManagerTest extends AcmeTest {
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
-
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-		this.signIn("administrator", "administrator");
-		super.clickOnMenu("Administrator", "Populate DB (samples)");
-		this.signOut();
-		
-		
-	}
 	// Test cases -------------------------------------------------------------
 
 	/**
@@ -60,6 +46,7 @@ public class ListTasksManagerTest extends AcmeTest {
 	// Ancillary methods ------------------------------------------------------
 
 	
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -70,6 +57,7 @@ public class ListTasksManagerTest extends AcmeTest {
 		
 	}
 
+	@Override
 	protected void signOut() {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign out"));

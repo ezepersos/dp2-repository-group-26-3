@@ -55,7 +55,7 @@ public abstract class AcmeTest extends AbstractTest {
 		By locator;
 
 		locator = By.xpath("//h1[normalize-space() = 'Unexpected error']");
-		assert super.exists(locator) : "Action didn't result in panic";		
+		assert super.exists(locator) : "Action didn't result in panic";
 	}
 
 	protected void checkNotPanicExists() {
@@ -261,7 +261,7 @@ public abstract class AcmeTest extends AbstractTest {
 				// INFO: Can silently ignore the exception here.
 				// INFO+ Sometimes, the toggle gets stale unexpectedly
 				// INFO+ and that has an impact on the main menu.
-			} 
+			}
 			optionLocator = By.xpath(String.format("//div[@id='mainMenu']/ul/li[a[normalize-space()='%s']]/div[contains(@class, 'dropdown-menu')]/a[normalize-space()='%s']", header, option));
 			super.clickAndWait(optionLocator);
 		}

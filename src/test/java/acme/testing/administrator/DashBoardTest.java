@@ -2,35 +2,21 @@
 package acme.testing.administrator;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-import acme.testing.AcmeTest;
+import acme.testing.AcmePlannerTest;
 
-public class DashBoardTest extends AcmeTest {
+public class DashBoardTest extends AcmePlannerTest {
 
 	// Internal state ---------------------------------------------------------
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.autoPausing = false;
-		super.beforeAll();
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-		this.signIn("administrator", "administrator");
-		super.clickAndGo(By.linkText("Administrator"));
-		super.clickAndGo(By.linkText("Populate DB (initial)"));
-
-		this.signOut();
-	}
-
+	
 	// Test cases -------------------------------------------------------------
 
 	/**
@@ -150,6 +136,7 @@ public class DashBoardTest extends AcmeTest {
 
 	// Ancillary methods ------------------------------------------------------
 
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -159,6 +146,7 @@ public class DashBoardTest extends AcmeTest {
 		super.clickOnSubmitButton("Sign in");
 	}
 
+	@Override
 	protected void signOut() {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign out"));
