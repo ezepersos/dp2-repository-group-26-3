@@ -32,6 +32,7 @@ public class ListShoutTest extends AcmePlannerTest {
 		super.checkColumnHasValue(recordIndex, 2, text);
 		super.navigateHome();
 		
+		
 	}
 	
 
