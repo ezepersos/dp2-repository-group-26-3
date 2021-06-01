@@ -61,11 +61,13 @@ public class DashBoardTest extends AcmePlannerTest {
 	public void positiveDashBoardList(final String totalNumberOfPublicTasks, final String totalNumberOfPrivateTasks, final String totalNumberOfFinishedTasks, final String totalNumberOfNonFinishedTasks, final String AverageTaskExecutionPeriods,
 		final String DeviationTaskExecutionPeriods, final String MinimumTaskExecutionPeriods, final String MaximumTaskExecutionPeriods, final String MaximumTaskWorkloads, final String MinimumTaskWorkload, final String DeviationTaskWorkloads,
 		final String AverageTaskWorkloads) {
+		super.setAutoPausing(true);
 		this.signIn("administrator", "administrator");
 		super.clickAndGo(By.linkText("Administrator"));
 		super.clickAndGo(By.linkText("Populate DB (samples)"));
 		super.clickAndGo(By.linkText("Administrator"));
 		super.clickAndGo(By.linkText("Dashboard"));
+		super.setAutoPausing(false);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(1) > td")).getText(), totalNumberOfPublicTasks);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(2) > td")).getText(), totalNumberOfPrivateTasks);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(3) > td")).getText(), totalNumberOfFinishedTasks);
@@ -78,6 +80,7 @@ public class DashBoardTest extends AcmePlannerTest {
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(10) > td")).getText(), MinimumTaskWorkload);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(11) > td")).getText(), DeviationTaskWorkloads);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(12) > td")).getText(), AverageTaskWorkloads);
+
 	}
 
 	/**
