@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 
 import acme.testing.AcmePlannerTest;
 
-public class ShowTasksManagerTest extends AcmePlannerTest {
+public class CreateTasksManagerTest extends AcmePlannerTest {
 
 
 
@@ -17,31 +17,63 @@ public class ShowTasksManagerTest extends AcmePlannerTest {
 
 	// Lifecycle management ---------------------------------------------------
 
-
 	// Test cases -------------------------------------------------------------
 
 	/**
 	 * 
 	 * Caso positivo:
-	 * En el que el manager puede ver los detalles de las tasks que tiene en su lista de tareas.
+	 * En el que el manager puede crear una tarea nueva sin problemas.
 	 */
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/showTasksManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/createTasksManager/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveShowTask(final String title, final String executionPeriodInit, final String executionPeriodEnd,
+	public void positiveCreateTasks(final String title, final String executionPeriodInit, final String executionPeriodEnd,
 		final String description, final String optionalLink, final int iter) {
 		this.signIn("manager", "manager");
 		super.clickAndGo(By.linkText("Manager"));
-		super.clickAndGo(By.linkText("My tasks"));
-		super.clickOnListingRecord(iter);
-		super.checkInputBoxHasValue("title", title);
-		super.checkInputBoxHasValue("executionPeriodInit", executionPeriodInit);
-		super.checkInputBoxHasValue("executionPeriodEnd", executionPeriodEnd);
-		super.checkInputBoxHasValue("description", description);
-		super.checkInputBoxHasValue("optionalLink", optionalLink);
+		super.clickAndGo(By.linkText("Create Task"));
+		super.fill(By.id("title"), title);
+		super.fill(By.id("executionPeriodInit"), executionPeriodInit);
+		super.fill(By.id("executionPeriodEnd"), executionPeriodEnd);
+		super.fill(By.id("description"), description);
+		super.fill(By.id("optionalLink"), optionalLink);
+		super.clickOnSubmitButton("Create task");
+		
+	
+		
 		
 	}
+	
+	/**
+	 * 
+	 * Caso negativo:
+	 * En el que el manager no puede crear una tarea ya finalizada y
+	 * le salta la validación del service.
+	 */
+	
+	@ParameterizedTest
+	@CsvFileSource(resources = "/createTasksManager/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void negativeCreateTasks(final String title, final String executionPeriodInit, final String executionPeriodEnd,
+		final String description, final String optionalLink, final int iter) {
+		this.signIn("manager", "manager");
+		super.clickAndGo(By.linkText("Manager"));
+		super.clickAndGo(By.linkText("Create Task"));
+		super.fill(By.id("title"), title);
+		super.fill(By.id("executionPeriodInit"), executionPeriodInit);
+		super.fill(By.id("executionPeriodEnd"), executionPeriodEnd);
+		super.fill(By.id("description"), description);
+		super.fill(By.id("optionalLink"), optionalLink);
+		super.clickOnSubmitButton("Create task");
+		super.checkErrorsExist();
+	
+		
+		
+	}
+		
+		
+		
 	
 
 	// Ancillary methods ------------------------------------------------------
@@ -66,7 +98,7 @@ public class ShowTasksManagerTest extends AcmePlannerTest {
 
 	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
 		super.navigateHome();
-		super.clickAndGo(By.linkText("Sign up"));
+		super.clickAndGo(By.linkText("Sign in"));
 		super.fill(By.id("username"), username);
 		super.fill(By.id("password"), password);
 		super.fill(By.id("confirmation"), password);
@@ -78,3 +110,4 @@ public class ShowTasksManagerTest extends AcmePlannerTest {
 	}
 
 }
+
