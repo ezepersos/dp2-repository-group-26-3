@@ -31,6 +31,7 @@ public abstract class AcmePlannerTest extends AcmeTest {
 		this.navigateHome();
 		this.signIn("administrator", "administrator");
 		super.clickOnMenu("Administrator", "Populate DB (initial)");
+		super.clickOnMenu("Administrator", "Populate DB (samples)");
 		super.checkAlertExists(true);		
 		this.signOut();
 	}

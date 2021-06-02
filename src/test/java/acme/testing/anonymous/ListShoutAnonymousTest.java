@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 
 import acme.testing.AcmePlannerTest;
 
-public class ListShoutTest extends AcmePlannerTest {
+public class ListShoutAnonymousTest extends AcmePlannerTest {
 
 	// Internal state ---------------------------------------------------------
 
