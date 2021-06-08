@@ -1,31 +1,19 @@
 package acme.testing.administrator;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-import acme.testing.AcmeTest;
+import acme.testing.AcmePlannerTest;
 
-public class SpamListUpdateTest extends AcmeTest {
+public class SpamListUpdateTest extends AcmePlannerTest {
 
 	// Internal state ---------------------------------------------------------
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
-
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-
-		this.signIn("administrator", "administrator");	
-		super.clickOnMenu("Administrator","Populate DB (initial)");
 	
-	}
 
 	// Test cases -------------------------------------------------------------
 	/**
@@ -45,8 +33,9 @@ public class SpamListUpdateTest extends AcmeTest {
 		super.clickOnMenu("Administrator", "Spam filter");
 
 
-	
-		assert super.exists(By.id("lista"));
+		super.checkInputBoxHasValue("lista", lista);
+		super.checkInputBoxHasValue("threshold", threshold);
+
 	}
 	/**
 	 * 
@@ -65,6 +54,7 @@ public class SpamListUpdateTest extends AcmeTest {
     }
 	// Ancillary methods ------------------------------------------------------
 
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -74,9 +64,11 @@ public class SpamListUpdateTest extends AcmeTest {
 		super.clickOnSubmitButton("Sign in");
 	}
 
+	@Override
 	protected void signOut() {
 		super.navigateHome();
-		super.clickOnSubmitButton("Sign out");
+		super.clickOnLink("Sign out");;
+	//	super.clickOnSubmitButton("sign-out");
 	}
 	protected void UpdateSpamWordList(final String threshold, final String lista) {
 

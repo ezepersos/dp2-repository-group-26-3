@@ -2,64 +2,23 @@
 package acme.testing.administrator;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-import acme.testing.AcmeTest;
+import acme.testing.AcmePlannerTest;
 
-public class DashBoardTest extends AcmeTest {
+public class DashBoardTest extends AcmePlannerTest {
 
 	// Internal state ---------------------------------------------------------
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.autoPausing = false;
-		super.beforeAll();
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-		this.signIn("administrator", "administrator");
-		super.clickAndGo(By.linkText("Administrator"));
-		super.clickAndGo(By.linkText("Populate DB (initial)"));
-
-		this.signOut();
-	}
-
+	
 	// Test cases -------------------------------------------------------------
 
-	/**
-	 * 
-	 * Caso positivo:
-	 * En el que el dashboard está vacío al no haber tasks.
-	 * Se comprueban las funcionalidades del service del dashboard en caso de que esté vacío
-	 */
-
-	@Test
-	@Order(10)
-	protected void assertInitialConditions() {
-		this.signIn("administrator", "administrator");
-		super.clickAndGo(By.linkText("Administrator"));
-		super.clickAndGo(By.linkText("Dashboard"));
-		Assertions.assertEquals("0", super.locateOne(By.cssSelector("tr:nth-child(1) > td")).getText());
-		Assertions.assertEquals("0", super.locateOne(By.cssSelector("tr:nth-child(2) > td")).getText());
-		Assertions.assertEquals("0", super.locateOne(By.cssSelector("tr:nth-child(3) > td")).getText());
-		Assertions.assertEquals("0", super.locateOne(By.cssSelector("tr:nth-child(4) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(5) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(6) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(7) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(8) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(9) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(10) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(11) > td")).getText());
-		Assertions.assertEquals("0.00", super.locateOne(By.cssSelector("tr:nth-child(12) > td")).getText());
-
-	}
 
 	/**
 	 * 
@@ -77,8 +36,6 @@ public class DashBoardTest extends AcmeTest {
 		final String AverageTaskWorkloads) {
 		this.signIn("administrator", "administrator");
 		super.clickAndGo(By.linkText("Administrator"));
-		super.clickAndGo(By.linkText("Populate DB (samples)"));
-		super.clickAndGo(By.linkText("Administrator"));
 		super.clickAndGo(By.linkText("Dashboard"));
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(1) > td")).getText(), totalNumberOfPublicTasks);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(2) > td")).getText(), totalNumberOfPrivateTasks);
@@ -92,6 +49,7 @@ public class DashBoardTest extends AcmeTest {
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(10) > td")).getText(), MinimumTaskWorkload);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(11) > td")).getText(), DeviationTaskWorkloads);
 		Assertions.assertEquals(super.locateOne(By.cssSelector("tr:nth-child(12) > td")).getText(), AverageTaskWorkloads);
+
 	}
 
 	/**
@@ -150,6 +108,7 @@ public class DashBoardTest extends AcmeTest {
 
 	// Ancillary methods ------------------------------------------------------
 
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -159,6 +118,7 @@ public class DashBoardTest extends AcmeTest {
 		super.clickOnSubmitButton("Sign in");
 	}
 
+	@Override
 	protected void signOut() {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign out"));
