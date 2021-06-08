@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.management.relation.Role;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,10 +80,9 @@ public class AdministratorSpamUpdateService implements AbstractUpdateService<Adm
 	public void update(final Request<Spam> request,final Spam entity) {
 		assert request != null;
 		assert entity != null;
-		System.out.println(request.getModel().getAttribute("lista"));
 		int i = 0;
 		final String[] s = request.getModel().getAttribute("lista").toString().trim().split(",");
-		List<Word> l = new ArrayList<Word>();
+		final List<Word> l = new ArrayList<Word>();
 		while(i< s.length) {
 			l.add(new Word(s[i].trim()));
 			i++;

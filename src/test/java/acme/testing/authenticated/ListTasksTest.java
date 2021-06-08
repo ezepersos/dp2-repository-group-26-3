@@ -1,48 +1,54 @@
-package acme.testing;
+package acme.testing.authenticated;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-public class ListShoutTest extends AcmeTest {
+import acme.testing.AcmePlannerTest;
+
+public class ListTasksTest extends AcmePlannerTest {
+
+
+
+
 
 	// Internal state ---------------------------------------------------------
 
 	// Lifecycle management ---------------------------------------------------
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
-
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-		this.signIn("administrator", "administrator");
-		super.clickOnMenu("Administrator", "Populate DB (samples)");
-		this.signOut();
-		
-	}
+	
 	// Test cases -------------------------------------------------------------
 
+	/**
+	 * 
+	 * Caso positivo:
+	 * En el que el el usuario autenticado puede ver la lista de las tasks públicas finalizadas.
+	 */
+	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/listShout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/listTasksAuthenticated/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveListShout(final int recordIndex, final String moment, final String author, final String text) {
-		super.navigateHome();
-		super.clickOnMenu("Anonymous", "List shouts");
-		super.checkColumnHasValue(recordIndex, 0, moment);
-		super.checkColumnHasValue(recordIndex, 1, author);
-		super.checkColumnHasValue(recordIndex, 2, text);
-		super.navigateHome();
+	public void positiveListTasks(final String title, final String executionPeriodInit, final String executionPeriodEnd,
+		final String description, final String optionalLink, final int iter) {
+		this.signUp("usser", "password", "name", "sur", "name@mail.com");
+		this.signIn("usser", "password");
+		super.clickAndGo(By.linkText("Account"));
+		super.clickAndGo(By.linkText("Task list"));
+		super.checkColumnHasValue(iter, 0, title);
+		super.checkColumnHasValue(iter, 1, executionPeriodInit);
+		super.checkColumnHasValue(iter, 2, executionPeriodEnd);
+		super.checkColumnHasValue(iter, 3, description);
+		
 		
 	}
+	
 	
 
 	// Ancillary methods ------------------------------------------------------
 
 	
+	@Override
 	protected void signIn(final String username, final String password) {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign in"));
@@ -53,6 +59,7 @@ public class ListShoutTest extends AcmeTest {
 		
 	}
 
+	@Override
 	protected void signOut() {
 		super.navigateHome();
 		super.clickAndGo(By.linkText("Sign out"));
@@ -60,7 +67,7 @@ public class ListShoutTest extends AcmeTest {
 
 	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
 		super.navigateHome();
-		super.clickAndGo(By.linkText("Sign in"));
+		super.clickAndGo(By.linkText("Sign up"));
 		super.fill(By.id("username"), username);
 		super.fill(By.id("password"), password);
 		super.fill(By.id("confirmation"), password);
