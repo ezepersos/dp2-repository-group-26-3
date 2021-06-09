@@ -48,7 +48,9 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods", "maximumTaskExecutionPeriods","averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads");
+		request.unbind(entity, model, "totalNumberOfPublicTasks", "totalNumberOfPrivateTasks", "totalNumberOfFinishedTasks", "totalNumberOfNonFinishedTasks", "averageTaskExecutionPeriods", "deviationTaskExecutionPeriods", "minimumTaskExecutionPeriods",
+			"maximumTaskExecutionPeriods", "averageTaskWorloads", "averageTaskWorloads", "deviationTaskWorloads", "minimumTaskWorloads", "maximumTaskWorloads", "ratioShoutsImportant", "ratioShoutsBudgetZero", "averageEUR", "averageDOLAR", "deviationEUR",
+			"deviationDOLAR");
 	}
 
 	@Override
@@ -56,18 +58,24 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert request != null;
 
 		Dashboard result;
-		Integer 					totalNumberOfPublicTasks;
-		Integer						totalNumberOfPrivateTasks;
-		Integer						totalNumberOfFinishedTasks;
-		Integer						totalNumberOfNonFinishedTasks;
-		Double						averageTaskExecutionPeriods;
-		Double						deviationTaskExecutionPeriods;
-		Double						minimumTaskExecutionPeriods;
-		Double						maximumTaskExecutionPeriods;
-		Double						averageTaskWorloads;
-		Double						deviationTaskWorloads;
-		Double						minimumTaskWorloads;
-		Double						maximumTaskWorloads;
+		Integer totalNumberOfPublicTasks;
+		Integer totalNumberOfPrivateTasks;
+		Integer totalNumberOfFinishedTasks;
+		Integer totalNumberOfNonFinishedTasks;
+		Double averageTaskExecutionPeriods;
+		Double deviationTaskExecutionPeriods;
+		Double minimumTaskExecutionPeriods;
+		Double maximumTaskExecutionPeriods;
+		Double averageTaskWorloads;
+		Double deviationTaskWorloads;
+		Double minimumTaskWorloads;
+		Double maximumTaskWorloads;
+		Double ratioShoutsImportant;
+		Double ratioShoutsBudgetZero;
+		Double averageEUR;
+		Double averageDOLAR;
+		Double deviationEUR;
+		Double deviationDOLAR;
 
 		final List<Task> totalTasks = this.repository.allTasks();
 		averageTaskWorloads = this.checkValue(this.calculateWorkloadAverage(totalTasks));
@@ -76,13 +84,20 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		totalNumberOfPrivateTasks = this.repository.totalNumberOfPrivateTasks();
 		totalNumberOfFinishedTasks = this.repository.totalNumberOfFinishedTasks();
 		totalNumberOfNonFinishedTasks = this.repository.totalNumberOfNonFinishedTasks();
-		averageTaskExecutionPeriods= this.checkValue(this.repository.averageTaskExecutionPeriods());
+		averageTaskExecutionPeriods = this.checkValue(this.repository.averageTaskExecutionPeriods());
 		deviationTaskExecutionPeriods = this.checkValue(this.repository.deviationTaskExecutionPeriods());
 		minimumTaskExecutionPeriods = this.checkValue(this.repository.minimumTaskExecutionPeriods());
 		maximumTaskExecutionPeriods = this.checkValue(this.repository.maximumTaskExecutionPeriods());
 		minimumTaskWorloads = this.checkValue(this.takeMinimum(totalTasks));
 		maximumTaskWorloads = this.checkValue(this.takeMaximum(totalTasks));
-		
+
+		final Integer totalShouts = this.repository.totalShouts();
+		ratioShoutsImportant = this.checkValue( 100 - (double) this.repository.ratioShoutsImportant() / totalShouts * 100);
+		ratioShoutsBudgetZero = this.checkValue( 100 - (double) this.repository.ratioShoutsBudgetZero() / totalShouts * 100);
+		averageEUR = this.checkValue(this.repository.averageEUR());
+		averageDOLAR = this.checkValue(this.repository.averageDOLAR());
+		deviationEUR = this.checkValue(this.repository.deviationEUR());
+		deviationDOLAR = this.checkValue(this.repository.deviationDOLAR());
 		result = new Dashboard();
 		result.setTotalNumberOfPublicTasks(totalNumberOfPublicTasks);
 		result.setTotalNumberOfPrivateTasks(totalNumberOfPrivateTasks);
@@ -96,9 +111,14 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setDeviationTaskWorloads(deviationTaskWorloads);
 		result.setMinimumTaskWorloads(minimumTaskWorloads);
 		result.setMaximumTaskWorloads(maximumTaskWorloads);
+		result.setRatioShoutsImportant(ratioShoutsImportant);
+		result.setRatioShoutsBudgetZero(ratioShoutsBudgetZero);
+		result.setAverageEUR(averageEUR);
+		result.setAverageDOLAR(averageDOLAR);
+		result.setDeviationEUR(deviationEUR);
+		result.setDeviationDOLAR(deviationDOLAR);
 		return result;
 	}
-
 
 	private Double checkValue(final Double value) {
 		Double res = value;
@@ -111,30 +131,30 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	private Double takeMaximum(final List<Task> totalTasks) {
 		if (totalTasks.isEmpty()) {
 			return .0;
-		}else {
-			
-		Double res = Double.MAX_VALUE;
-		for(final Task t: totalTasks) {
-			if (res > t.workload()) {
-				res = t.workload();
+		} else {
+
+			Double res = Double.MAX_VALUE;
+			for (final Task t : totalTasks) {
+				if (res > t.workload()) {
+					res = t.workload();
+				}
 			}
-		}
-		return res;
+			return res;
 		}
 	}
 
 	private Double takeMinimum(final List<Task> totalTasks) {
 		if (totalTasks.isEmpty()) {
 			return .0;
-		}else {
-			
-		Double res = Double.MIN_VALUE;
-		for(final Task t: totalTasks) {
-			if (res < t.workload()) {
-				res = t.workload();
+		} else {
+
+			Double res = Double.MIN_VALUE;
+			for (final Task t : totalTasks) {
+				if (res < t.workload()) {
+					res = t.workload();
+				}
 			}
-		}
-		return res;
+			return res;
 		}
 	}
 
@@ -142,15 +162,15 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		Double totalWorkload = .0;
 		Double deviation = .0;
 		final Integer numberOfTasks = totalTasks.size();
-		for(final Task task: totalTasks){
+		for (final Task task : totalTasks) {
 			totalWorkload += task.workload();
 		}
-		final Double mean = totalWorkload/numberOfTasks;
-		for(final Task task: totalTasks){
-			deviation += Math.pow(task.workload()-mean, 2);
+		final Double mean = totalWorkload / numberOfTasks;
+		for (final Task task : totalTasks) {
+			deviation += Math.pow(task.workload() - mean, 2);
 
 		}
-		return Math.sqrt(deviation/numberOfTasks);
+		return Math.sqrt(deviation / numberOfTasks);
 	}
 
 	private Double calculateWorkloadAverage(final List<Task> totalTasks) {
@@ -161,6 +181,5 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		average /= totalTasks.size();
 		return average;
 	}
-	
 
 }

@@ -26,3 +26,10 @@ administrator.dashboard.form.label.minimum-task-workloads = Minimum task workloa
 administrator.dashboard.form.label.maximum-task-workloads = Maximum task workloads
 administrator.dashboard.form.title.application-statuses = Application statuses
 
+administrator.dashboard.form.label.ratio-shouts-important = Shouts marked as important
+administrator.dashboard.form.label.ratio-shouts-budgetZero =  Shouts with a cash amount of zero
+administrator.dashboard.form.label.average-EUR = Average number of Euro Shoutsoutouts
+administrator.dashboard.form.label.average-DOLAR = Average number of Outputs to Dollars
+administrator.dashboard.form.label.deviation-EUR = Deviation of Shouts in Euros
+administrator.dashboard.form.label.deviation-DOLAR = Deviation of Shouts in Dolar
+

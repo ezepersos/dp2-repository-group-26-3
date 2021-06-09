@@ -18,10 +18,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	
-	<name>Acme-Planner</name>
+	<name>ControlCheck</name>
 	<description>This is the project for group 26.</description>
 
-	<artifactId>Acme-Planner</artifactId>
+	<artifactId>ControlCheck</artifactId>
 	<version>21.6</version>
 	<packaging>war</packaging>
 

@@ -16,9 +16,14 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:list readonly="true">
-	<acme:list-column code="anonymous.shout.list.label.moment" path="moment" width="20%"/>
-	<acme:list-column code="anonymous.shout.list.label.author" path="author" width="20%"/>
-	<acme:list-column code="anonymous.shout.list.label.text" path="text" width="60%"/>
+	<acme:list-column code="anonymous.shout.list.label.moment" path="moment" width="12%"/>
+	<acme:list-column code="anonymous.shout.list.label.author" path="author" width="12%"/>
+	<acme:list-column code="anonymous.shout.list.label.text" path="text" width="16%"/>
+	<acme:list-column code="anonymous.shout.form.list.informationSheet.identifier" path="informationSheet.identifier" width="12%"/>
+	<acme:list-column code="anonymous.shout.form.list.informationSheet.deadline" path="informationSheet.deadline" width="12%"/>
+	<acme:list-column code="anonymous.shout.form.list.informationSheet.budget" path="informationSheet.budget" width="12%"/>
+	<acme:list-column code="anonymous.shout.form.list.informationSheet.currencyType" path="informationSheet.currencyType" width="12%"/>
+	<acme:list-column code="anonymous.shout.form.list.informationSheet.important" path="informationSheet.important" width="12%"/>
 </acme:list>
 
 

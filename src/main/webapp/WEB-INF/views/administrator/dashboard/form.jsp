@@ -25,6 +25,54 @@
 	</caption>	
 	<tr>
 		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.ratio-shouts-important"/>
+		</th>
+		<td>
+			<acme:print value="${ratioShoutsImportant}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.ratio-shouts-budgetZero"/>
+		</th>
+		<td>
+			<acme:print value="${ratioShoutsBudgetZero}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.average-EUR"/>
+		</th>
+		<td>
+			<acme:print value="${averageEUR}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.average-DOLAR"/>
+		</th>
+		<td>
+			<acme:print value="${averageDOLAR}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.deviation-EUR"/>
+		</th>
+		<td>
+			<acme:print value="${deviationEUR}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
+			<acme:message code="administrator.dashboard.form.label.deviation-DOLAR"/>
+		</th>
+		<td>
+			<acme:print value="${deviationDOLAR}"/>
+		</td>
+	</tr>
+	<tr>
+		<th scope="row">
 			<acme:message code="administrator.dashboard.form.label.number-public-tasks"/>
 		</th>
 		<td>

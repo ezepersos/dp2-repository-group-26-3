@@ -44,3 +44,6 @@ acme.validation.pattern = Must match pattern "{0}"
 acme.validation.length = Length must be between {0} and {1}
 acme.validation.range = Must be between {0} and {1}
 acme.validation.script = Script expression "{0}" must return true
+
+acme.validation.wuster = The identifier has to start with 6 digits followed by a hyphen and a date in the format yyyymmdd
+acme.validation.wuster.date = Date must be 1 week after now

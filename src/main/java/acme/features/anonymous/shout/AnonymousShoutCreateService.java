@@ -12,6 +12,7 @@
 
 package acme.features.anonymous.shout;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -34,11 +35,12 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousShoutRepository repository;
+	protected AnonymousShoutRepository		repository;
 	@Autowired
-	protected AdministratorSpamShowService spamService;
+	protected AdministratorSpamShowService	spamService;
 
 	// AbstractCreateService<Administrator, Shout> interface --------------
+
 
 	@Override
 	public boolean authorise(final Request<Shout> request) {
@@ -62,7 +64,8 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "author", "text", "info");
+		request.unbind(entity, model, "author", "text", "info", "informationSheet.identifier", "informationSheet.deadline", "informationSheet.budget", "informationSheet.currencyType",
+			"informationSheet.important");
 	}
 
 	@Override
@@ -91,17 +94,29 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		final String autorWords = entity.getAuthor().trim().replace(" ", "").toLowerCase();
 		final String infoWords = entity.getInfo().trim().replace(" ", "").toLowerCase();
 		final String textWords = entity.getText().trim().replace(" ", "").toLowerCase();
- 		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
- 		final String allWords = autorWords+infoWords+textWords;
- 		boolean containsSpam = false;
-			for(final Word word: listSpam) {
-				containsSpam = StringUtils.contains(allWords, word.getSpamWord());
-				if(containsSpam) {
-					break;
-				}
+		final List<Word> listSpam = this.spamService.findAll().getSpamWordsList();
+		final String allWords = autorWords + infoWords + textWords;
+		final String identifierInformationSheet = entity.getInformationSheet().getIdentifier();
+		final LocalDate fechaPasada = entity.getInformationSheet().getDeadline();
+		boolean containsSpam = false;
+		for (final Word word : listSpam) {
+			containsSpam = StringUtils.contains(allWords, word.getSpamWord());
+			if (containsSpam) {
+				break;
 			}
-			errors.state(request,!containsSpam, "spam", "acme.validation.spam");
+		}
+		errors.state(request, !containsSpam, "spam", "acme.validation.spam");
 
+		
+		if (!identifierInformationSheet.matches("^\\d{6}:\\d{6}$")) {
+			errors.state(request, false, "wuster", "acme.validation.wuster");
+		}
+		
+		if(!fechaPasada.plusDays(7).isBefore(LocalDate.now())) {
+			errors.state(request, false, "wuster", "acme.validation.wuster.date");
+		}
+		
+		
 	}
 
 	@Override
@@ -109,12 +124,11 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert request != null;
 		assert entity != null;
 		Date moment;
-
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
+		this.repository.save(entity.getInformationSheet());
 		this.repository.save(entity);
 
-		
 	}
 
 }

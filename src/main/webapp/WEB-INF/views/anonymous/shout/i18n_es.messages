@@ -17,3 +17,18 @@ anonymous.shout.form.button.return = Volver
 anonymous.shout.list.label.moment = Momento
 anonymous.shout.list.label.author = Autor
 anonymous.shout.list.label.text = Texto
+
+anonymous.shout.form.label.informationSheet.identifier = Identificador:
+anonymous.shout.form.label.informationSheet.deadline = Fecha límite:
+anonymous.shout.form.label.informationSheet.amount = Cantidad:
+anonymous.shout.form.label.informationSheet.currency = Tipo de moneda:
+anonymous.shout.form.label.informationSheet.currency.EUR = Eur
+anonymous.shout.form.label.informationSheet.currency.DOLAR = Dolar
+anonymous.shout.form.label.informationSheet.important = ¿Importante?
+
+
+anonymous.shout.form.list.informationSheet.identifier = identificador
+anonymous.shout.form.list.informationSheet.deadline = fecha límite
+anonymous.shout.form.list.informationSheet.budget = Cantidad
+anonymous.shout.form.list.informationSheet.currencyType = Tipo de moneda
+anonymous.shout.form.list.informationSheet.important = ¿Importante?

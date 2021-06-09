@@ -42,4 +42,18 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double maximumTaskExecutionPeriods();
 	@Query ("select t from Task t")
 	List<Task> allTasks();
+	@Query("select count(s) from Shout s")
+	Integer totalShouts();
+	@Query ("select count(w) from Wuster w where w.important = true")
+	Integer ratioShoutsImportant();
+	@Query ("select count(w) from Wuster w where w.budget = 0.0")
+	Integer ratioShoutsBudgetZero();
+	@Query("select avg(w.budget) from Wuster w where w.currencyType = 0")
+	Double averageEUR();
+	@Query("select avg(w.budget) from Wuster w where w.currencyType = 1")
+	Double averageDOLAR();
+	@Query("select stddev(w.budget) from Wuster w where w.currencyType = 0")
+	Double deviationEUR();
+	@Query("select stddev(w.budget) from Wuster w where w.currencyType = 1")
+	Double deviationDOLAR();
 }
